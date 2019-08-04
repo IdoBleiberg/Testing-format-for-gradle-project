@@ -1,3 +1,12 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M4'
+	}
+}
+
 apply plugin: 'edu.wpi.first.GradleRIO'
 
 def ROBOT_MAIN_CLASS = 'com.team3316.robot.RobotEntry'
