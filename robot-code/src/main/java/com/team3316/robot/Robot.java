@@ -1,7 +1,10 @@
 package com.team3316.robot;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.team3316.robot.humanIO.Joysticks;
 import com.team3316.robot.humanIO.SDB;
+import com.team3316.robot.subsystems.Drivetrain;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -27,6 +30,7 @@ public class Robot extends TimedRobot {
   /*
    * Subsystems
    */
+  public static Drivetrain drivetrain;
 
   Command autonomousCommand;
 
@@ -53,6 +57,11 @@ public class Robot extends TimedRobot {
      * Human IO (that requires subsystems)
      */
     joysticks.initButtons();
+
+    try {
+      drivetrain = new Drivetrain();
+    } catch(Exception e) {}
+
     sdb = new SDB();
   }
 
