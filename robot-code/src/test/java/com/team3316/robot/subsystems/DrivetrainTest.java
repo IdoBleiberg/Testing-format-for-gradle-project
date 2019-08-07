@@ -14,7 +14,7 @@ public class DrivetrainTest {
   private Animal dog;
 
   public DrivetrainTest() {
-    ApplicationContext context = new FileSystemXmlApplicationContext("C:/Users/D-Bug/destination-deep-space-2019/robot-code/src/spring.xml");
+    ApplicationContext context = new FileSystemXmlApplicationContext("C:/Users/D-Bug/Desktop/Testing-format-for-gradle-project/robot-code/src/spring.xml");
     this.dog = (Animal) context.getBean("dog");
   }
 
