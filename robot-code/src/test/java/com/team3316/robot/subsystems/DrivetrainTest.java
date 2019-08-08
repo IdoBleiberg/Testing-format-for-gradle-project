@@ -3,10 +3,9 @@ package com.team3316.robot.subsystems;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
-
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.BeanFactory;
 
 public class DrivetrainTest {
   //Drivetrain mockDrivetrain = mock(Drivetrain.class);
@@ -14,7 +13,7 @@ public class DrivetrainTest {
   private Animal dog;
 
   public DrivetrainTest() {
-    ApplicationContext context = new FileSystemXmlApplicationContext("C:/Users/D-Bug/Desktop/Testing-format-for-gradle-project/robot-code/src/spring.xml");
+    ApplicationContext context = new ClassPathXmlApplicationContext("/ApplicationContext.xml");
     this.dog = (Animal) context.getBean("dog");
   }
 
