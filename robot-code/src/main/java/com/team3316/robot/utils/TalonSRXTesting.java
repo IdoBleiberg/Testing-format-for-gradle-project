@@ -139,12 +139,18 @@ public class TalonSRXTesting implements IMotorController {
 
 	@Override
 	public double getMotorOutputPercent() {
+		if (this._following != null) {
+			return this._following.getMotorOutputPercent();
+		}
     return this._demand;
 	}
 
 	@Override
 	public double getMotorOutputVoltage() {
-		return this._demand;
+		if (this._following != null) {
+			return this._following.getMotorOutputVoltage();
+		}
+    return this._demand;
 	}
 
 	@Override
