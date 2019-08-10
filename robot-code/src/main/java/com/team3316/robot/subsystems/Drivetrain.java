@@ -1,19 +1,26 @@
 package com.team3316.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.IMotorController;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.team3316.kit.DBugSubsystem;
 import com.team3316.kit.config.Config;
 import com.team3316.kit.config.ConfigException;
 import com.team3316.robot.commands.TankDrive;
+import com.team3316.robot.utils.TalonSRXTesting;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Drivetrain extends DBugSubsystem{
-  TalonSRX talon1;
-  TalonSRX talon2;
+  IMotorController talon1;
+  IMotorController talon2;
 
   public Drivetrain() throws ConfigException {
-    this.talon1 = new TalonSRX((int) Config.getInstance().get("drivetrain.talon1"));
-    this.talon2 = new TalonSRX((int) Config.getInstance().get("drivetrain.talon2"));
+    ApplicationContext context = new ClassPathXmlApplicationContext("/ApplicationContext.xml");
+    this.talon1 = (IMotorController) context.getBean("talon1");
+    this.talon2 = (IMotorController) context.getBean("talon2");
+    this.talon1.neutralOutput();
   }
 
   @Override
