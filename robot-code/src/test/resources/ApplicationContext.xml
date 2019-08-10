@@ -4,6 +4,10 @@
    xsi:schemaLocation = "http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-  <bean id="dog" class="com.team3316.robot.humanIO.Dog"/>
-  
+  <bean id="talon1" class="com.team3316.robot.utils.TalonSRXTesting">
+    <constructor-arg index="0" value="1"/>
+  </bean>
+  <bean id="talon2" class="com.team3316.robot.utils.TalonSRXTesting">
+    <constructor-arg index="0" value="2"/>
+  </bean>
 </beans>
