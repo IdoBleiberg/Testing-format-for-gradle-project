@@ -1,8 +1,21 @@
 package com.team3316.robot.utils;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 public class Utils {
+
+  private static ApplicationContext _context;
+
   public static double scale (double x, Point a, Point b) {
     return ((x - a.x) * (a.y - b.y) / (a.x - b.x) + a.y);
+  }
+
+  public static Object getBean(String beanName) {
+    if(_context == null) {
+      _context = new ClassPathXmlApplicationContext("/ApplicationContext.xml");
+    }
+    return _context.getBean(beanName);
   }
 
   /*

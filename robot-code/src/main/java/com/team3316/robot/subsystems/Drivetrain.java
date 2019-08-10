@@ -8,6 +8,7 @@ import com.team3316.kit.config.Config;
 import com.team3316.kit.config.ConfigException;
 import com.team3316.robot.commands.TankDrive;
 import com.team3316.robot.utils.TalonSRXTesting;
+import com.team3316.robot.utils.Utils;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -17,9 +18,8 @@ public class Drivetrain extends DBugSubsystem{
   IMotorController talon2;
 
   public Drivetrain() throws ConfigException {
-    ApplicationContext context = new ClassPathXmlApplicationContext("/ApplicationContext.xml");
-    this.talon1 = (IMotorController) context.getBean("talon1");
-    this.talon2 = (IMotorController) context.getBean("talon2");
+    this.talon1 = (IMotorController) Utils.getBean("talon1");
+    this.talon2 = (IMotorController) Utils.getBean("talon2");
     this.talon1.neutralOutput();
   }
 
