@@ -13,7 +13,9 @@ import com.team3316.robot.utils.Utils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class Drivetrain extends DBugSubsystem{
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+public class Drivetrain extends Subsystem {
   IMotorController talon1;
   IMotorController talon2;
 

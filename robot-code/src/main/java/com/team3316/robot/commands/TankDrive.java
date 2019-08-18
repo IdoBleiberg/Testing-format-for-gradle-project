@@ -1,16 +1,17 @@
 package com.team3316.robot.commands;
 
-import com.team3316.kit.commands.DBugCommand;
 import com.team3316.robot.Robot;
 
-public class TankDrive extends DBugCommand {
+import edu.wpi.first.wpilibj.command.Command;
+
+public class TankDrive extends Command {
 
   public TankDrive() {
     requires(Robot.drivetrain);
   }
 
   @Override
-  protected void init() {
+  protected void initialize() {
 
   }
 
@@ -25,12 +26,12 @@ public class TankDrive extends DBugCommand {
   }
 
   @Override
-  protected void fin() {
+  protected void end() {
 
   }
 
   @Override
-  protected void interr() {
+  protected void interrupted() {
 
   }
 
