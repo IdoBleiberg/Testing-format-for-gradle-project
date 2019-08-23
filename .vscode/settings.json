@@ -1,6 +1,6 @@
 {
     "java.configuration.updateBuildConfiguration": "interactive",
-    "editor.fontSize": 12.5,
+    "editor.fontSize": 15,
     "editor.fontFamily": "Fira Code, Menlo, Monaco, 'Courier New', monospace",
     "editor.tabSize": 2,
     "editor.insertSpaces": true

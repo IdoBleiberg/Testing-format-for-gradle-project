@@ -30,7 +30,7 @@ public class Robot extends TimedRobot {
   /*
    * Subsystems
    */
-  public static Drivetrain drivetrain;
+  public static Drivetrain drivetrain = new Drivetrain();
 
   Command autonomousCommand;
 

@@ -18,16 +18,21 @@ import com.ctre.phoenix.motorcontrol.RemoteSensorSource;
 import com.ctre.phoenix.motorcontrol.SensorTerm;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.StickyFaults;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-public class TalonSRXTesting implements IMotorController {
+import edu.wpi.first.wpilibj.Talon;
+
+public class TalonSRXTesting extends TalonSRX implements IMotorController {
 
   private int _id;
   private IMotorController _following;
   private ControlMode _controlMode;
   private double _demand, _sensorValue;
   private NeutralMode _neutralMode;
-  private boolean _phaseSensor, _invertad;
+	private boolean _phaseSensor, _invertad;
+
   public TalonSRXTesting(int id) {
+		super(id);
     this._id = id;
   }
 
@@ -475,6 +480,11 @@ public class TalonSRXTesting implements IMotorController {
 	@Override
 	public ControlMode getControlMode() {
 		return this._controlMode;
+	}
+
+	@Override
+	public ErrorCode configMotionSCurveStrength(int curveStrength, int timeoutMs) {
+		return null;
 	}
 
 } 
