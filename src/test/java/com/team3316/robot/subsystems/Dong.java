@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 public class Dong {
-  @Test
+  //@Test
   public void mob() {
     assertEquals(1, 1);
   }

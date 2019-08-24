@@ -18,13 +18,12 @@ import com.ctre.phoenix.motorcontrol.RemoteSensorSource;
 import com.ctre.phoenix.motorcontrol.SensorTerm;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.StickyFaults;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.team3316.kit.config.ConfigException;
-import com.team3316.kit.motors.DBugTalon;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-import edu.wpi.first.wpilibj.Talon;
-
-public class TalonSRXTesting extends TalonSRX implements IMotorController {
+/**
+ * VictorSPXTesting
+ */
+public class VictorSPXTesting extends VictorSPX implements IMotorController {
 
   private int _id;
   private IMotorController _following;
@@ -33,7 +32,7 @@ public class TalonSRXTesting extends TalonSRX implements IMotorController {
   private NeutralMode _neutralMode;
 	private boolean _phaseSensor, _invertad;
 
-  public TalonSRXTesting(int id) throws ConfigException {
+  public VictorSPXTesting(int id) {
 		super(id);
     this._id = id;
   }

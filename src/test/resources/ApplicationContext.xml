@@ -10,4 +10,10 @@
   <bean id="talon2" class="com.team3316.robot.utils.TalonSRXTesting">
     <constructor-arg index="0" value="2"/>
   </bean>
+  <bean id="victor1" class="com.team3316.robot.utils.VictorSPXTesting">
+    <constructor-arg index="0" value="3"/>
+  </bean>
+  <bean id="victor2" class="com.team3316.robot.utils.VictorSPXTesting">
+    <constructor-arg index="0" value="4"/>
+  </bean>
 </beans>

@@ -19,7 +19,7 @@ public class JoysticksTest {
     };
   }
 
-  @Test
+  //@Test
   public void testNormalP() {
     for (int i = 0; i < this.normalP.length; i++) {
       if (Joysticks.fromJoystickToVoltage(this.normalP[i][0]) != this.normalP[i][1]) {
@@ -31,7 +31,7 @@ public class JoysticksTest {
     assertTrue(true);
   }
 
-  @Test
+  //@Test
   public void testEdgeP() {
     for (int i = 0; i < this.edgeP.length; i++) {
       if (Joysticks.fromJoystickToVoltage(this.edgeP[i][0]) != this.edgeP[i][1]) {
