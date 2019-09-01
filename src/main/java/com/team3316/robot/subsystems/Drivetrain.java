@@ -3,11 +3,9 @@ package com.team3316.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.team3316.kit.motors.DBugTalon;
 import com.team3316.robot.commands.TankDrive;
 import com.team3316.robot.utils.Utils;
 
-import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Drivetrain extends Subsystem {

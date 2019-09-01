@@ -20,9 +20,6 @@ import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.StickyFaults;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.team3316.kit.config.ConfigException;
-import com.team3316.kit.motors.DBugTalon;
-
-import edu.wpi.first.wpilibj.Talon;
 
 public class TalonSRXTesting extends TalonSRX implements IMotorController {
 

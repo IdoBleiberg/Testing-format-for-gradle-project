@@ -16,11 +16,8 @@ plugins {
     id 'edu.wpi.first.GradleRIO' version '2019.1.1'
 }
 
-apply plugin: 'idea'
-apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-apply plugin: 'edu.wpi.first.GradleRIO'
 
 deploy {
     targets {
@@ -64,9 +61,11 @@ dependencies {
     nativeZip wpi.deps.vendor.jni(wpi.platforms.roborio)
     nativeDesktopZip wpi.deps.vendor.jni(wpi.platforms.desktop)
 
-    compile 'com.github.team3316:dbug-kit:0.0.20-beta'
+    compile 'com.github.team3316:dbug-kit:0.0.22-beta'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter'
     compile 'org.springframework.boot:spring-boot-starter'
+    compile group: 'com.revrobotics.frc', name: 'SparkMax-java', version: '1.1.9'
+    compile group: 'com.revrobotics.frc', name: 'SparkMax-driver', version: '1.1.9'
     testCompile('org.junit.jupiter:junit-jupiter-api:5.2.0')
     testCompile('org.junit.jupiter:junit-jupiter-params:5.2.0')
     testCompile('org.springframework.boot:spring-boot-starter-test')
