@@ -20,20 +20,95 @@ import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.StickyFaults;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.team3316.kit.config.ConfigException;
+import com.team3316.kit.motors.DBugMotorController;
+import com.team3316.kit.motors.DBugTalon;
+import com.team3316.kit.motors.TalonType;
 
-public class TalonSRXTesting extends TalonSRX implements IMotorController {
+import edu.wpi.first.wpilibj.PIDOutput;
+
+public class TalonSRXTesting extends DBugTalon implements IMotorController, DBugMotorController{
 
   private int _id;
   private IMotorController _following;
   private ControlMode _controlMode;
-  private double _demand, _sensorValue;
+  private double _demand, _sensorValue, _distPerPulse;
   private NeutralMode _neutralMode;
 	private boolean _phaseSensor, _invertad;
+	private TalonType _type;
+
+	public TalonSRXTesting(int id, TalonType type) throws ConfigException {
+		super(id);
+		this._id = id;
+		this._type = type;
+  }
 
   public TalonSRXTesting(int id) throws ConfigException {
 		super(id);
-    this._id = id;
+		this._id = id;
+		this._type = TalonType.CLOSED_LOOP_QUAD;
   }
+
+	public int convertDistanceToPulses(double distance) {
+    return (int) Math.round(distance / this._distPerPulse);
+  }
+
+	@Override
+	public ErrorCode configMotionSCurveStrength(int curveStrength, int timeoutMs) {
+		return null;
+	}
+
+	@Override
+	public void configure() throws ConfigException {
+
+	}
+
+	@Override
+	public void setDistancePerRevolution(double dpr, int upr) {
+    if (this._type.isClosedLoop()) {
+      this._distPerPulse = dpr / upr;
+    }
+	}
+
+	@Override
+	public double getEncoderValue() {
+		return this.getSelectedSensorPosition();
+	}
+
+	@Override
+	public double getEncoderRate() {
+		return this.getSelectedSensorVelocity();
+	}
+
+	@Override
+	public double getDistance() {
+		return this._distPerPulse * this.getEncoderValue();
+	}
+
+	@Override
+	public double getVelocity() {
+		return 10.0 * this._distPerPulse * this.getEncoderRate();
+	}
+
+	@Override
+	public void setDistance(double distance) {
+		this.setSelectedSensorPosition(this.convertDistanceToPulses(distance));
+	}
+
+	@Override
+	public void setupPIDF(double kP, double kI, double kD, double kF) {
+
+	}
+
+	@Override
+	public void zeroEncoder() {
+		this.setDistance(0.0);
+	}
+
+	@Override
+	public PIDOutput getPercentPIDOutput() {
+		return null;
+	}
+
 
 	@Override
 	public void follow(IMotorController masterToFollow) {
@@ -480,10 +555,4 @@ public class TalonSRXTesting extends TalonSRX implements IMotorController {
 	public ControlMode getControlMode() {
 		return this._controlMode;
 	}
-
-	@Override
-	public ErrorCode configMotionSCurveStrength(int curveStrength, int timeoutMs) {
-		return null;
-	}
-
 } 

@@ -38,4 +38,16 @@ public class DrivetrainTest {
     assertEquals(Robot.drivetrain.getVictor2(), 1.0);
   }
 
+  @Test
+  public void testDistanceTalon1() {
+    Robot.drivetrain.setDistance(42.0, 0.0);
+    assertEquals(42, Robot.drivetrain.getDistance()[0]); 
+  }
+
+  @Test
+  public void testDistanceTalon2() {
+    Robot.drivetrain.setDistance(0.0, -63.0);
+    assertEquals(-63, Robot.drivetrain.getDistance()[1]); 
+  }
+
 }
