@@ -1,14 +1,27 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <beans xmlns = "http://www.springframework.org/schema/beans"
    xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:util="http://www.springframework.org/schema/util"
+   xmlns:p="http://www.springframework.org/schema/p"
    xsi:schemaLocation = "http://www.springframework.org/schema/beans
-   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/util 
+   http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+  <util:list id="TalonType" value-type="com.team3316.kit.motors.TalonType">
+    <value>REGULAR</value>
+    <value>CLOSED_LOOP_QUAD</value>
+    <value>CLOSED_LOOP_QUAD_ABS</value>
+    <value>CLOSED_LOOP_MAG</value>
+    <value>CLOSED_LOOP_MAG_ABS</value>
+    <value>FOLLOWER</value>
+  </util:list>
   <bean id="talon1" class="com.team3316.robot.utils.TalonSRXTesting">
     <constructor-arg index="0" value="1"/>
+    <constructor-arg index="1" value="CLOSED_LOOP_QUAD"/>
   </bean>
   <bean id="talon2" class="com.team3316.robot.utils.TalonSRXTesting">
     <constructor-arg index="0" value="2"/>
+    <constructor-arg index="1" value="CLOSED_LOOP_QUAD"/>
   </bean>
   <bean id="victor1" class="com.team3316.robot.utils.VictorSPXTesting">
     <constructor-arg index="0" value="3"/>
