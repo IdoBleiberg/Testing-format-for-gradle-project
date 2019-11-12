@@ -2,6 +2,7 @@ package com.team3316.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.kauailabs.navx.frc.AHRS;
 import com.team3316.kit.motors.DBugTalon;
 import com.team3316.robot.commands.TankDrive;
 import com.team3316.robot.utils.Utils;
@@ -15,7 +16,11 @@ public class Drivetrain extends Subsystem {
   private VictorSPX victor1;
   private VictorSPX victor2;
 
+  private AHRS _NavX;
+
   public Drivetrain() {
+    this._NavX = (AHRS) Utils.getBean("NavX");
+
     this.talon1 = (DBugTalon)  Utils.getBean("talon1");
     this.talon2 = (DBugTalon) Utils.getBean("talon2");
     this.victor1 = (VictorSPX) Utils.getBean("victor1");

@@ -14,10 +14,18 @@
     <value>CLOSED_LOOP_MAG</value>
     <value>CLOSED_LOOP_MAG_ABS</value>
     <value>FOLLOWER</value>
+  </util:list> 
+
+  <util:list id="Port" value-type="edu.wpi.first.wpilibj.SPI.Port">
+    <value>kOnboardCS0</value>
+    <value>kOnboardCS1</value>
+    <value>kOnboardCS2</value>
+    <value>kOnboardCS3</value>
+    <value>kMXP</value>
   </util:list>
+  <!-- Drivetrain -->
 
-  <!-- Drivetrain Motors -->
-
+  <!-- Motors -->
   <bean id="talon1" class="com.team3316.robot.utils.TalonSRXTesting">
     <constructor-arg index="0" value="1"/>
     <constructor-arg index="1" value="CLOSED_LOOP_QUAD"/>
@@ -33,8 +41,14 @@
     <constructor-arg index="0" value="4"/>
   </bean>
 
-  <!-- Cargo Ejector Motors -->
+  <!-- Sesnors -->
+  <bean id="NavX" class="com.team3316.robot.utils.AHRSTesting">
+    <constructor-arg index="0" value="kMXP"/>
+  </bean>
 
+  <!-- Cargo Ejector -->
+
+  <!-- Motors -->
   <bean id="ejectorArmMotor" class="com.team3316.robot.utils.TalonSRXTesting">
     <constructor-arg index="0" value="1"/>
     <constructor-arg index="1" value="CLOSED_LOOP_QUAD"/>
@@ -43,8 +57,9 @@
     <constructor-arg index="0" value="4"/>
   </bean>
 
-  <!-- Cargo Ejector Motors -->
+  <!-- Cargo Ejector -->
 
+  <!-- Motors -->
   <bean id="collectorArmMotor" class="com.team3316.robot.utils.TalonSRXTesting">
     <constructor-arg index="0" value="1"/>
     <constructor-arg index="1" value="CLOSED_LOOP_QUAD"/>
