@@ -9,9 +9,9 @@ import com.team3316.robot.utils.InvalidStateException;
 
 import org.junit.jupiter.api.Test;
 
-public class DrivetrainTest {
+public class GeneralTest {
 
-  public DrivetrainTest() {
+  public GeneralTest() {
     //Robot.drivetrain = new Drivetrain();
     Robot.cargoEjector = new CargoEjector();
     Robot.cargoIntake = new CargoIntake();
