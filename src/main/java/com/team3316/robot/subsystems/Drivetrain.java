@@ -6,7 +6,6 @@ import com.team3316.kit.motors.DBugTalon;
 import com.team3316.robot.commands.TankDrive;
 import com.team3316.robot.utils.Utils;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Drivetrain extends Subsystem {

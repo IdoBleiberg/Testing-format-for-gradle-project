@@ -18,44 +18,44 @@
 
   <!-- Drivetrain Motors -->
 
-  <bean id="talon1" class="com.team3316.robot.utils.TalonSRXTesting">
+  <bean id="talon1" class="com.team3316.kit.motors.DBugTalon">
     <constructor-arg index="0" value="1"/>
     <constructor-arg index="1" value="CLOSED_LOOP_QUAD"/>
   </bean>
-  <bean id="talon2" class="com.team3316.robot.utils.TalonSRXTesting">
+  <bean id="talon2" class="com.team3316.kit.motors.DBugTalon">
     <constructor-arg index="0" value="2"/>
     <constructor-arg index="1" value="CLOSED_LOOP_QUAD"/>
   </bean>
-  <bean id="victor1" class="com.team3316.robot.utils.VictorSPXTesting">
+  <bean id="victor1" class="com.ctre.phoenix.motorcontrol.can.VictorSPX">
     <constructor-arg index="0" value="3"/>
   </bean>
-  <bean id="victor2" class="com.team3316.robot.utils.VictorSPXTesting">
+  <bean id="victor2" class="com.ctre.phoenix.motorcontrol.can.VictorSPX">
     <constructor-arg index="0" value="4"/>
   </bean>
 
   <!-- Cargo Ejector Motors -->
 
-  <bean id="ejectorArmMotor" class="com.team3316.robot.utils.TalonSRXTesting">
+  <bean id="ejectorArmMotor" class="com.team3316.kit.motors.DBugTalon">
     <constructor-arg index="0" value="1"/>
     <constructor-arg index="1" value="CLOSED_LOOP_QUAD"/>
   </bean>
-  <bean id="VictorMotor" class="com.team3316.robot.utils.VictorSPTesting">
+  <bean id="VictorMotor" class="edu.wpi.first.wpilibj.VictorSP">
     <constructor-arg index="0" value="4"/>
   </bean>
 
   <!-- Cargo Ejector Motors -->
 
-  <bean id="collectorArmMotor" class="com.team3316.robot.utils.TalonSRXTesting">
+  <bean id="collectorArmMotor" class="com.team3316.kit.motors.DBugTalon">
     <constructor-arg index="0" value="1"/>
     <constructor-arg index="1" value="CLOSED_LOOP_QUAD"/>
   </bean>
-  <bean id="collectorSlaveArmMotor" class="com.team3316.robot.utils.VictorSPXTesting">
+  <bean id="collectorSlaveArmMotor" class="com.ctre.phoenix.motorcontrol.can.VictorSPX">
     <constructor-arg index="0" value="4"/>
   </bean>
 
   <!-- General Sensors -->
 
-    <bean id="Switch" class="com.team3316.robot.utils.DigitalInputTesting">
+  <bean id="Switch" class="edu.wpi.first.wpilibj.DigitalInput">
     <constructor-arg index="0" value="4"/>
   </bean>
 

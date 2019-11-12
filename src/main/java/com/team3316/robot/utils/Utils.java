@@ -1,5 +1,8 @@
 package com.team3316.robot.utils;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -7,13 +10,21 @@ public class Utils {
 
   private static ApplicationContext _context;
 
-  public static double scale (double x, Point a, Point b) {
+  public static double scale(double x, Point a, Point b) {
     return ((x - a.x) * (a.y - b.y) / (a.x - b.x) + a.y);
   }
 
   public static Object getBean(String beanName) {
+    String everything = "/DeployApllicationContext.xml";
+    try {
+      BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/RobotType.txt"));
+      everything = reader.readLine();
+      System.out.println("The file says " + everything);
+    } catch (Exception e) {
+      System.out.println("Couldn't get robot type because of " + e);
+    }
     if(_context == null) {
-      _context = new ClassPathXmlApplicationContext("/ApplicationContext.xml");
+      _context = new ClassPathXmlApplicationContext(everything);
     }
     return _context.getBean(beanName);
   }
