@@ -18,6 +18,11 @@ public class Utils {
     return _context.getBean(beanName);
   }
 
+  
+  public static boolean isInNeighborhood(double x, double L, double epsilon) {
+    return Math.abs(x - L) < epsilon;
+  }
+
   /*
    * returns a linear interpolation from a lookup table
    * assuming x=0 is for x values and x=1 is for y values
@@ -45,6 +50,8 @@ public class Utils {
         mid = (bot + top) / 2;
       }
     }
+
+    
 
     //linear interpolation between the points in the lookup table
     double valueToReturn = scale(requiredIndex,

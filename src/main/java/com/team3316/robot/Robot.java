@@ -1,15 +1,18 @@
 package com.team3316.robot;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import java.util.Timer;
+
+import com.team3316.kit.DBugLogger;
 import com.team3316.robot.humanIO.Joysticks;
 import com.team3316.robot.humanIO.SDB;
+import com.team3316.robot.subsystems.CargoEjector;
+import com.team3316.robot.subsystems.CargoIntake;
 import com.team3316.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import java.util.Timer;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,41 +33,48 @@ public class Robot extends TimedRobot {
   /*
    * Subsystems
    */
-  public static Drivetrain drivetrain = new Drivetrain();
+  /*
+   * Subsystems
+   */
+  public static Drivetrain drivetrain;
+  public static CargoIntake cargoIntake;
+  public static CargoEjector cargoEjector;
 
   Command autonomousCommand;
 
   /**
-   * This function is run when the robot is first started up and should be
-   * used for any initialization code.
+   * This function is run when the robot is first started up and should be used
+   * for any initialization code.
    */
-  public void robotInit () {
-    /*
-     * Above all else
-     */
-    timer = new Timer();
-
-    /*
-     * Human IO (that does not require subsystems)
-     */
-    joysticks = new Joysticks();
-
-    /*
-     * Subsystems
-     */
-
-    /*
-     * Human IO (that requires subsystems)
-     */
-    joysticks.initButtons();
-
+  public void robotInit() {
     try {
+      /*
+       * Above all else
+       */
+      timer = new Timer();
+
+      /*
+       * Human IO (that does not require subsystems)
+       */
+      joysticks = new Joysticks();
+
+      /*
+       * Subsystems
+       */
       drivetrain = new Drivetrain();
-    } catch(Exception e) {}
+      cargoIntake = new CargoIntake();
+      cargoEjector = new CargoEjector();
 
-    sdb = new SDB();
+      /*
+       * Human IO (that requires subsystems)
+       */
+      joysticks.initButtons();
+      sdb = new SDB();
+
+    } catch (Exception e) {
+      DBugLogger.getInstance().severe(e);
+    }
   }
-
   public void disabledPeriodic () {
     Scheduler.getInstance().run();
   }

@@ -1,19 +1,20 @@
 package com.team3316.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.team3316.kit.motors.DBugTalon;
 import com.team3316.robot.commands.TankDrive;
 import com.team3316.robot.utils.Utils;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Drivetrain extends Subsystem {
-  DBugTalon talon1;
-  DBugTalon talon2;
-  VictorSPX victor1;
-  VictorSPX victor2;
+
+  private DBugTalon talon1;
+  private DBugTalon talon2;
+  private VictorSPX victor1;
+  private VictorSPX victor2;
 
   public Drivetrain() {
     this.talon1 = (DBugTalon)  Utils.getBean("talon1");
