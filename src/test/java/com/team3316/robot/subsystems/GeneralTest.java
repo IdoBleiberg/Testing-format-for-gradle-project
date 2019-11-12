@@ -1,5 +1,6 @@
 package com.team3316.robot.subsystems;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.team3316.robot.Robot;
@@ -25,5 +26,4 @@ public class GeneralTest {
         Robot.cargoIntake.setArmState(IntakeArmState.IN);
     });
   }
-
 }
