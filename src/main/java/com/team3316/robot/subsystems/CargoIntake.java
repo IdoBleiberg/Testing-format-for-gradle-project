@@ -9,6 +9,7 @@ import com.team3316.robot.subsystems.CargoEjector.EjectorArmState;
 import com.team3316.robot.utils.InvalidStateException;
 import com.team3316.robot.utils.Utils;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -30,13 +31,13 @@ public class CargoIntake extends Subsystem {
   private DBugTalon _armMasterMotor;
   private VictorSPX _armSlaveMotor;
   private VictorSP _rollerMotor, _bottomRollerMotor;
-  private boolean _armHallDown, _armHallUp;
+  private DigitalInput _armHallDown, _armHallUp;
 
   public CargoIntake() {
     _isCargoSecured = false;
 
-    this._armHallDown = false;
-    this._armHallUp = false;
+    this._armHallDown = (DigitalInput) Utils.getBean("Switch");
+    this._armHallUp = (DigitalInput) Utils.getBean("Switch");
     this._armMasterMotor = (DBugTalon) Utils.getBean("collectorArmMotor");
     // TODO - Remove when elec removes Victor from robot
     this._armSlaveMotor = (VictorSPX) Utils.getBean("collectorSlaveArmMotor");
@@ -150,22 +151,14 @@ public class CargoIntake extends Subsystem {
    * @return Current value of the arm's bottom hall effect.
    */
   private boolean getArmHallOut() {
-    return this._armHallDown;
+    return this._armHallDown.get();
   }
 
   /**
    * @return Current value of the arm's top hall effect.
    */
   private boolean getArmHallIn() {
-    return this._armHallUp;
-  }
-
-  public void setArmInHall(boolean has) {
-    this._armHallUp = has;
-  }
-
-  public void setArmOutHall(boolean has) {
-    this._armHallDown = has;
+    return this._armHallUp.get();
   }
 
   /**

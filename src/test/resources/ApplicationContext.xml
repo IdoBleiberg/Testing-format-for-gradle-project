@@ -53,4 +53,10 @@
     <constructor-arg index="0" value="4"/>
   </bean>
 
+  <!-- General Sensors -->
+
+    <bean id="Switch" class="com.team3316.robot.utils.DigitalInputTesting">
+    <constructor-arg index="0" value="4"/>
+  </bean>
+
 </beans>

@@ -8,6 +8,7 @@ import com.team3316.robot.subsystems.CargoIntake.IntakeArmState;
 import com.team3316.robot.utils.InvalidStateException;
 import com.team3316.robot.utils.Utils;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 /**
@@ -16,9 +17,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class CargoEjector extends Subsystem {
   private VictorSP _ejectorMotor;
   //private DigitalInput _LSwitch, _RSwitch;
-  private boolean _switch;
+  private DigitalInput _switch;
   private DBugTalon _armTalon;
-  private boolean _collectHallEffect, _ejectHallEffect;
+  private DigitalInput _collectHallEffect, _ejectHallEffect;
   private int _armPIDLoopIndex, _armPIDTimeout;
   private double _kArmTolerance;
 
@@ -32,15 +33,13 @@ public class CargoEjector extends Subsystem {
     /*
      * Switches
      */
-    this._switch = false;
-    //this._LSwitch = new DigitalInput((int) Config.getInstance().get("cargoEjector.LSwitchPort"));
-    //this._RSwitch = new DigitalInput((int) Config.getInstance().get("cargoEjector.RSwitchPort"));
+    this._switch = (DigitalInput) Utils.getBean("Switch");
 
     /*
      * Hall Effects
      */
-    this._ejectHallEffect = false;
-    this._collectHallEffect = false;
+    this._ejectHallEffect = (DigitalInput) Utils.getBean("Switch");
+    this._collectHallEffect = (DigitalInput) Utils.getBean("Switch");
 
     /*
      * talon configuration
@@ -66,9 +65,9 @@ public class CargoEjector extends Subsystem {
 
   @Override
   public void periodic() {
-    if (this._collectHallEffect)
+    if (this._collectHallEffect.get())
       this.resetEncoder(EjectorArmState.COLLECT);
-    else if (this._ejectHallEffect)
+    else if (this._ejectHallEffect.get())
       this.resetEncoder(EjectorArmState.EJECT);
   }
 
@@ -115,18 +114,6 @@ public class CargoEjector extends Subsystem {
     this._armTalon.set(ControlMode.Position, state.getAngle());
   }
 
-  public void setHasCargo(boolean has) {
-    this._switch = has;
-  }
-
-  public void setCollectSwitch(boolean has) {
-    this._collectHallEffect = has;
-  }
-
-  public void setEjectSwitch(boolean has) {
-    this._ejectHallEffect = has;
-  }
-
   @Override
   public void initDefaultCommand() {
 
@@ -145,7 +132,7 @@ public class CargoEjector extends Subsystem {
   }
 
   public boolean hasCargo() {
-    return this._switch; //this._LSwitch.get() || this._RSwitch.get();
+    return this._switch.get(); //this._LSwitch.get() || this._RSwitch.get();
   }
 
   private void resetEncoder(EjectorArmState state) {
