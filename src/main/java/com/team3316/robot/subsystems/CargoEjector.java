@@ -6,6 +6,7 @@ import com.team3316.kit.DBugSubsystem;
 import com.team3316.kit.motors.DBugTalon;
 import com.team3316.robot.Robot;
 import com.team3316.robot.subsystems.CargoIntake.IntakeArmState;
+import com.team3316.robot.subsystems.Elevator.ElevatorState;
 import com.team3316.robot.utils.InvalidStateException;
 import com.team3316.robot.utils.Utils;
 
@@ -52,6 +53,8 @@ public class CargoEjector extends DBugSubsystem {
     this._armTalon.setSensorPhase(true);
 
     EjectorArmState.COLLECT.setAngle(0);
+    EjectorArmState.SC.setAngle(90);
+    EjectorArmState.INSTALL_LVL3.setAngle(175);
     EjectorArmState.EJECT.setAngle(180);
 
     EjectorRollerState.IN.setVoltage(1);
@@ -72,7 +75,7 @@ public class CargoEjector extends DBugSubsystem {
   }
 
   public enum EjectorArmState {
-    EJECT, COLLECT, INTERMEDIATE;
+    EJECT, SC, COLLECT, INSTALL_LVL3 ,INTERMEDIATE;
 
     private double _angle;
 
@@ -106,11 +109,27 @@ public class CargoEjector extends DBugSubsystem {
   public void setArmState(EjectorArmState state) throws InvalidStateException {
     if (state == EjectorArmState.INTERMEDIATE)
       throw new InvalidStateException("Cannot move ejector arm to intermediate");
+    if (Robot.elevator.getPosition() > ElevatorState.LVL1_HP.getHeight()) {
+      if (state == EjectorArmState.EJECT) {
+        if (this.getArmPos() <= 173) {
+          throw new InvalidStateException("Cannot move ejector to eject if elevator isn't down and is at the other side of the elevator");
+        }
+      }
+    }
     if (state == EjectorArmState.COLLECT && Robot.cargoIntake.getArmState() == IntakeArmState.IN)
       throw new InvalidStateException("Cannot move arm to COLLECT if cargointake is IN");
+    // Barak: This raised a False Positive in game
+    // if (state == EjectorArmState.EJECT
+    //     && Robot.panelMechanism.getState() == PanelMechanism.PanelMechanismState.INTERMEDIATE_CLOSED)
+    //   throw new InvalidStateException("Cannot move arm to EJECT if panel mechainsm is between CLOSED and INSTALL");
 
-    EjectorArmState currentState = this.getArmState();
-    //DBugLogger.getInstance().info("Changing Ejector arm state: " + currentState.toString() + " -> " + state.toString());
+    if (this.getArmState() == EjectorArmState.EJECT && state == EjectorArmState.INSTALL_LVL3) {
+      this._armTalon.selectProfileSlot(this._armPIDLoopIndex + 1, 0);
+    } else if (this.getArmState() == EjectorArmState.INSTALL_LVL3 && state == EjectorArmState.EJECT) {
+      this._armTalon.selectProfileSlot(this._armPIDLoopIndex + 1, 0);
+    } else {
+      this._armTalon.selectProfileSlot(this._armPIDLoopIndex, 0);
+    }
     this._armTalon.set(ControlMode.Position, state.getAngle());
   }
 

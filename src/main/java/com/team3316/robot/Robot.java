@@ -8,6 +8,8 @@ import com.team3316.robot.humanIO.SDB;
 import com.team3316.robot.subsystems.CargoEjector;
 import com.team3316.robot.subsystems.CargoIntake;
 import com.team3316.robot.subsystems.Drivetrain;
+import com.team3316.robot.subsystems.Elevator;
+import com.team3316.robot.subsystems.PanelMechanism;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -39,6 +41,8 @@ public class Robot extends TimedRobot {
   public static Drivetrain drivetrain;
   public static CargoIntake cargoIntake;
   public static CargoEjector cargoEjector;
+  public static Elevator elevator;
+  public static PanelMechanism panelMechanism;
 
   Command autonomousCommand;
 
@@ -64,6 +68,8 @@ public class Robot extends TimedRobot {
       drivetrain = new Drivetrain();
       cargoIntake = new CargoIntake();
       cargoEjector = new CargoEjector();
+      elevator = new Elevator();
+      panelMechanism = new PanelMechanism();
 
       /*
        * Human IO (that requires subsystems)

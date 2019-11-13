@@ -69,6 +69,24 @@
     <constructor-arg index="0" value="4"/>
   </bean>
 
+  <!-- Elevator -->
+
+  <!-- Motors -->
+  <bean id="elevator.motor.1" class="com.team3316.kit.motors.DBugTalon">
+    <constructor-arg index="0" value="1"/>
+    <constructor-arg index="1" value="CLOSED_LOOP_QUAD"/>
+  </bean>
+  <bean id="elevator.motor.2" class="com.ctre.phoenix.motorcontrol.can.VictorSPX">
+    <constructor-arg index="0" value="4"/>
+  </bean>
+
+  <!-- Panel Mechanism -->
+
+  <!-- Motors -->
+  <bean id="panelMotors" class="com.ctre.phoenix.motorcontrol.can.VictorSPX">
+    <constructor-arg index="0" value="4"/>
+  </bean>
+
   <!-- General Sensors -->
 
   <bean id="Switch" class="edu.wpi.first.wpilibj.DigitalInput">
