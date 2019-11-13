@@ -45,8 +45,8 @@ public class CargoIntake extends DBugSubsystem {
     this._armSlaveMotor.follow(this._armMasterMotor);
 
     //To make it easy and intuitive to understand IN position will be 0 and OUT will be 90 because on the robot the arm has a 90° movement range
-    IntakeArmState.IN.setPosition(90);
-    IntakeArmState.OUT.setPosition(0);
+    IntakeArmState.IN.setPosition(0);
+    IntakeArmState.OUT.setPosition(90);
     this._armPosTolerance = 1;
 
     // Config _armMasterMotor Closed Control Position loop
@@ -65,6 +65,8 @@ public class CargoIntake extends DBugSubsystem {
         .setBottomRollerVoltage(1);
     IntakeRollersState.STOPPED.setRollerVoltage(0);
     IntakeRollersState.STOPPED.setBottomRollerVoltage(0);
+
+    this._armMasterMotor.zeroEncoder();
   }
 
   public enum IntakeArmState {
@@ -118,8 +120,8 @@ public class CargoIntake extends DBugSubsystem {
    * Take position for the encoder and return IntakeArmState
    */
   private IntakeArmState degToArmState(double deg) {
-    if (deg >= IntakeArmState.IN.getPosition() - this._armPosTolerance) return IntakeArmState.IN;
-    else if (deg <= IntakeArmState.OUT.getPosition() + this._armPosTolerance) return IntakeArmState.OUT;
+    if (deg <= IntakeArmState.IN.getPosition() + this._armPosTolerance) return IntakeArmState.IN;
+    else if (deg >= IntakeArmState.OUT.getPosition() - this._armPosTolerance) return IntakeArmState.OUT;
     return IntakeArmState.INTERMEDIATE;
   }
 
@@ -129,7 +131,7 @@ public class CargoIntake extends DBugSubsystem {
    *   IntakeArmState.IN._position == fully closed
    *   IntakeArmState.OUT._position == fully open
    */
-  private double getArmPos() {
+  public double getArmPos() {
     return this._armMasterMotor.getDistance();
   }
 

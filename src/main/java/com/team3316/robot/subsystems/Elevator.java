@@ -210,24 +210,24 @@ public class Elevator extends DBugSubsystem {
 
     // Internal states initalization
     ElevatorState.BOTTOM.setHeight(0);
-    ElevatorState.BOTTOM_BP.setHeight(5);
-    ElevatorState.STARTING_CONF.setHeight(10);
-    ElevatorState.TOP_BP.setHeight(200);
-    ElevatorState.TOP.setHeight(210);
+    ElevatorState.BOTTOM_BP.setHeight(7.9);
+    ElevatorState.STARTING_CONF.setHeight(58.25);
+    ElevatorState.TOP_BP.setHeight(142.5);
+    ElevatorState.TOP.setHeight(160.4);
 
     // Levels initialization
-    ElevatorState.SC.setHeight(40);
-    ElevatorState.AFTER_SC.setHeight(45);
-    ElevatorState.CARGOSHIP.setHeight(50);
-    ElevatorState.LVL1_HP.setHeight(60);
-    ElevatorState.LS_COLLECT.setHeight(62.5);
-    ElevatorState.LVL1_CARGO.setHeight(55);
-    ElevatorState.PRE_LVL2_HP.setHeight(75);
-    ElevatorState.LVL2_HP.setHeight(73);
-    ElevatorState.LVL2_CARGO.setHeight(70);
-    ElevatorState.PRE_LVL3_HP.setHeight(100);
-    ElevatorState.LVL3_HP.setHeight(90);
-    ElevatorState.LVL3_CARGO.setHeight(95);
+    ElevatorState.SC.setHeight(12.6);
+    ElevatorState.AFTER_SC.setHeight(26.0);
+    ElevatorState.LVL1_CARGO.setHeight(13.0);
+    ElevatorState.LVL1_HP.setHeight(43.9);
+    ElevatorState.LS_COLLECT.setHeight(44.3);
+    ElevatorState.CARGOSHIP.setHeight(60.0);
+    ElevatorState.PRE_LVL2_HP.setHeight(126.6 - 8.0);
+    ElevatorState.LVL2_HP.setHeight(126.6);
+    ElevatorState.LVL2_CARGO.setHeight(90.0);
+    ElevatorState.PRE_LVL3_HP.setHeight(161.5 - 8.0);
+    ElevatorState.LVL3_HP.setHeight(161.5);
+    ElevatorState.LVL3_CARGO.setHeight(161.5);
 
     // Sensors
     /*
@@ -380,13 +380,16 @@ public class Elevator extends DBugSubsystem {
     switch (wantedState) {
     case INTERMEDIATE:
     case STARTING_CONF:
+    System.out.println("Cannot move elevator states without heights.");
       throw new InvalidStateException("Cannot move elevator states without heights.");
     default:
       if (wantedState != ElevatorState.BOTTOM && Robot.cargoEjector.getArmState() != EjectorArmState.EJECT) 
-        if (Robot.cargoEjector.getArmState() != EjectorArmState.SC && this.getPosition() > ElevatorState.LVL1_HP.getHeight())  {
+        if (Robot.cargoEjector.getArmState() != EjectorArmState.SC && wantedState.getHeight() > ElevatorState.LVL1_HP.getHeight())  {
+          System.out.println("Cannot lift elevator if ejector is not in eject");
           throw new InvalidStateException("Cannot lift elevator if ejector is not in eject");
         }
     }
+    this.setPositionUnsafe(wantedState.getHeight());
   }
 
   public void setBrake(boolean status) {

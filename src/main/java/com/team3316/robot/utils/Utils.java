@@ -19,7 +19,6 @@ public class Utils {
     try {
       BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/RobotType.txt"));
       everything = reader.readLine();
-      System.out.println("The file says " + everything);
     } catch (Exception e) {
       System.out.println("Couldn't get robot type because of " + e);
     }

@@ -1,7 +1,7 @@
 package com.team3316.robot.subsystems;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.team3316.robot.Robot;
 import com.team3316.robot.subsystems.CargoEjector.EjectorArmState;
@@ -14,10 +14,9 @@ import org.junit.jupiter.api.Test;
 public class GeneralTest {
 
   public GeneralTest() {
-    //Robot.drivetrain = new Drivetrain();
+    // Robot.drivetrain = new Drivetrain();
     Robot.cargoEjector = new CargoEjector();
     Robot.cargoIntake = new CargoIntake();
-    Robot.panelMechanism = new PanelMechanism();
     Robot.elevator = new Elevator();
   }
 
@@ -30,14 +29,53 @@ public class GeneralTest {
     });
   }
 
+
+  @Test
+  public void EjectorIntake2() {
+    assertThrows(InvalidStateException.class, () -> {
+      Robot.elevator.setState(ElevatorState.BOTTOM);
+      Robot.cargoEjector.setArmState(EjectorArmState.EJECT);
+      Robot.cargoIntake.setArmState(IntakeArmState.IN);
+      Robot.cargoEjector.setArmState(EjectorArmState.COLLECT);
+    });
+  }
+
+  @Test
+  public void EjectorElevator() {
+    try {
+      Robot.elevator.setState(ElevatorState.BOTTOM);
+      Robot.cargoEjector.setArmState(EjectorArmState.EJECT);
+      Robot.cargoIntake.setArmState(IntakeArmState.IN);
+      Robot.cargoEjector.setArmState(EjectorArmState.INSTALL_LVL3);
+    } catch (InvalidStateException e) {
+      assertTrue(false);
+    } finally {
+      assertTrue(true);
+    }
+  }
+
+  @Test
+  public void EjectorElevator2() {
+    try {
+      Robot.elevator.setState(ElevatorState.BOTTOM);
+      Robot.cargoEjector.setArmState(EjectorArmState.EJECT);
+      Robot.cargoIntake.setArmState(IntakeArmState.IN);
+      Robot.elevator.setState(ElevatorState.LVL3_CARGO);
+      Robot.cargoEjector.setArmState(EjectorArmState.INSTALL_LVL3);
+    } catch (InvalidStateException e) {
+      assertTrue(false);
+    } finally {
+      assertTrue(true);
+    }
+  }
+
   @Test
   public void EjectorElevatorGround() {
     assertThrows(InvalidStateException.class, () -> {
       Robot.elevator.setState(ElevatorState.BOTTOM);
       Robot.cargoIntake.setArmState(IntakeArmState.OUT);
       Robot.cargoEjector.setArmState(EjectorArmState.COLLECT);
-      Robot.elevator.setState(ElevatorState.LVL2_CARGO);
-  });
+      Robot.elevator.setState(ElevatorState.LVL2_HP);
+    });
   }
-
 }

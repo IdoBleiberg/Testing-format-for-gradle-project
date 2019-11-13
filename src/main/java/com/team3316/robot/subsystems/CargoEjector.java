@@ -19,7 +19,7 @@ public class CargoEjector extends DBugSubsystem {
   private VictorSP _ejectorMotor;
   //private DigitalInput _LSwitch, _RSwitch;
   private DigitalInput _switch;
-  private DBugTalon _armTalon;
+  public DBugTalon _armTalon;
   private DigitalInput _collectHallEffect, _ejectHallEffect;
   private int _armPIDLoopIndex, _armPIDTimeout;
   private double _kArmTolerance;
@@ -63,6 +63,9 @@ public class CargoEjector extends DBugSubsystem {
     // TODO: move to config
     this._armTalon.configVoltageCompSaturation(4);
     this._armTalon.enableVoltageCompensation(true);
+
+    this._armTalon.zeroEncoder();
+
   }
 
 
@@ -107,22 +110,28 @@ public class CargoEjector extends DBugSubsystem {
   }
 
   public void setArmState(EjectorArmState state) throws InvalidStateException {
-    if (state == EjectorArmState.INTERMEDIATE)
+    if (state == EjectorArmState.INTERMEDIATE) {
+      System.out.println("Cannot move ejector arm to intermediate");
       throw new InvalidStateException("Cannot move ejector arm to intermediate");
+    }
     if (Robot.elevator.getPosition() > ElevatorState.LVL1_HP.getHeight()) {
       if (state == EjectorArmState.EJECT) {
         if (this.getArmPos() <= 173) {
+          System.out.println("Cannot move ejector to eject if elevator isn't down and is at the other side of the elevator");
           throw new InvalidStateException("Cannot move ejector to eject if elevator isn't down and is at the other side of the elevator");
         }
       }
     }
-    if (state == EjectorArmState.COLLECT && Robot.cargoIntake.getArmState() == IntakeArmState.IN)
+    if (state == EjectorArmState.COLLECT && Robot.cargoIntake.getArmState() == IntakeArmState.IN) {
+      System.out.println("Cannot move arm to COLLECT if cargointake is IN");
       throw new InvalidStateException("Cannot move arm to COLLECT if cargointake is IN");
+    }
     // Barak: This raised a False Positive in game
     // if (state == EjectorArmState.EJECT
     //     && Robot.panelMechanism.getState() == PanelMechanism.PanelMechanismState.INTERMEDIATE_CLOSED)
     //   throw new InvalidStateException("Cannot move arm to EJECT if panel mechainsm is between CLOSED and INSTALL");
 
+    /*
     if (this.getArmState() == EjectorArmState.EJECT && state == EjectorArmState.INSTALL_LVL3) {
       this._armTalon.selectProfileSlot(this._armPIDLoopIndex + 1, 0);
     } else if (this.getArmState() == EjectorArmState.INSTALL_LVL3 && state == EjectorArmState.EJECT) {
@@ -130,6 +139,7 @@ public class CargoEjector extends DBugSubsystem {
     } else {
       this._armTalon.selectProfileSlot(this._armPIDLoopIndex, 0);
     }
+    */
     this._armTalon.set(ControlMode.Position, state.getAngle());
   }
 
@@ -139,10 +149,12 @@ public class CargoEjector extends DBugSubsystem {
   }
 
   public EjectorArmState getArmState() {
-    if (this.getArmPos() >= EjectorArmState.EJECT.getAngle() - this._kArmTolerance)
+    if (this.getArmPos() >= EjectorArmState.EJECT.getAngle() - this._kArmTolerance) {
       return EjectorArmState.EJECT;
-    else if (this.getArmPos() <= EjectorArmState.COLLECT.getAngle() + this._kArmTolerance)
+    }
+    else if (this.getArmPos() <= EjectorArmState.COLLECT.getAngle() + this._kArmTolerance) {
       return EjectorArmState.COLLECT;
+    }
     return EjectorArmState.INTERMEDIATE;
   }
 
