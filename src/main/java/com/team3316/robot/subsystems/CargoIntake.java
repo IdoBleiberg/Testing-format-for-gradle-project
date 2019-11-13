@@ -3,6 +3,7 @@ package com.team3316.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.team3316.kit.DBugSubsystem;
 import com.team3316.kit.motors.DBugTalon;
 import com.team3316.robot.Robot;
 import com.team3316.robot.subsystems.CargoEjector.EjectorArmState;
@@ -16,7 +17,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * CargoIntake
  */
-public class CargoIntake extends Subsystem {
+public class CargoIntake extends DBugSubsystem {
   private boolean _isCargoSecured;
   private int _kPIDLoopIdx, _kTimeoutMs;
   private double _armPosTolerance;
@@ -247,5 +248,23 @@ public class CargoIntake extends Subsystem {
     // if (this.isArmOut()) this.resetArmPos(IntakeArmState.OUT._position);
     if (this.getArmHallOut()) this.resetArmPos(IntakeArmState.OUT);
     else if (this.getArmHallIn()) this.resetArmPos(IntakeArmState.IN);
+  }
+
+  @Override
+  public void displayTestData() {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void displayMatchData() {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void displayCommands() {
+    // TODO Auto-generated method stub
+
   }
 }

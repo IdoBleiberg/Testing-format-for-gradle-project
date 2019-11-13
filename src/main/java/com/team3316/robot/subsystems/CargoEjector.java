@@ -2,6 +2,7 @@ package com.team3316.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.team3316.kit.DBugSubsystem;
 import com.team3316.kit.motors.DBugTalon;
 import com.team3316.robot.Robot;
 import com.team3316.robot.subsystems.CargoIntake.IntakeArmState;
@@ -10,11 +11,10 @@ import com.team3316.robot.utils.Utils;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * CGEjector
  */
-public class CargoEjector extends Subsystem {
+public class CargoEjector extends DBugSubsystem {
   private VictorSP _ejectorMotor;
   //private DigitalInput _LSwitch, _RSwitch;
   private DigitalInput _switch;
@@ -151,5 +151,23 @@ public class CargoEjector extends Subsystem {
   public void disabledRoutine() {
     this.setBrake(true);
     this._armTalon.set(ControlMode.PercentOutput, 0.0);
+  }
+
+  @Override
+  public void displayTestData() {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void displayMatchData() {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void displayCommands() {
+    // TODO Auto-generated method stub
+
   }
 }
