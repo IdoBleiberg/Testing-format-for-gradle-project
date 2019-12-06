@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.team3316.kit.DBugSubsystem;
+import com.team3316.kit.mocks.SparkMaxTesting;
 import com.team3316.kit.motors.DBugTalon;
 import com.team3316.robot.Robot;
 import com.team3316.robot.subsystems.CargoEjector.EjectorArmState;

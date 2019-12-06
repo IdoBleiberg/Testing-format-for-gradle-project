@@ -1,8 +1,12 @@
 package com.team3316.robot.subsystems;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.team3316.kit.mocks.SparkMaxTesting;
+import com.team3316.kit.motors.DBugSparkMax;
 import com.team3316.robot.Robot;
 import com.team3316.robot.subsystems.CargoEjector.EjectorArmState;
 import com.team3316.robot.subsystems.CargoIntake.IntakeArmState;
@@ -13,11 +17,17 @@ import org.junit.jupiter.api.Test;
 
 public class GeneralTest {
 
+  SparkMaxTesting _spark;
+
   public GeneralTest() {
     // Robot.drivetrain = new Drivetrain();
     Robot.cargoEjector = new CargoEjector();
     Robot.cargoIntake = new CargoIntake();
     Robot.elevator = new Elevator();
+
+    this._spark = new SparkMaxTesting(1);
+    this._spark.setDistancePerRevolution(1, 1);
+
   }
 
   @Test
@@ -29,6 +39,23 @@ public class GeneralTest {
     });
   }
 
+  @Test
+  public void sparkMaxTest1() {
+    this._spark.setDistance(50.0);
+    assertEquals((int) 50,(int) this._spark.getDistance());
+  }
+
+  @Test
+  public void sparkMaxTest2() {
+    this._spark.set(ControlMode.Position, 50);
+    assertEquals((int) 50,(int) this._spark.getDistance());
+  }
+
+  @Test
+  public void sparkMaxTest3() {
+    this._spark.set(ControlMode.PercentOutput, 0.5);
+    assertEquals((int) 0.5,(int) this._spark.getVelocity());
+  }
 
   @Test
   public void EjectorIntake2() {
