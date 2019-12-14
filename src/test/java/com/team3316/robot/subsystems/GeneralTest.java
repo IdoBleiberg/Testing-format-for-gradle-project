@@ -49,9 +49,8 @@ public class GeneralTest {
       Robot.cargoEjector.setArmState(EjectorArmState.INSTALL_LVL3);
     } catch (InvalidStateException e) {
       assertTrue(false);
-    } finally {
-      assertTrue(true);
     }
+    assertTrue(true);
   }
 
   @Test
@@ -64,9 +63,8 @@ public class GeneralTest {
       Robot.cargoEjector.setArmState(EjectorArmState.INSTALL_LVL3);
     } catch (InvalidStateException e) {
       assertTrue(false);
-    } finally {
-      assertTrue(true);
     }
+    assertTrue(true);
   }
 
   @Test
