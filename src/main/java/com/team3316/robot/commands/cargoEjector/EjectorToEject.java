@@ -3,7 +3,6 @@ package com.team3316.robot.commands.cargoEjector;
 import com.team3316.kit.DBugLogger;
 import com.team3316.kit.commands.DBugCommandGroup;
 import com.team3316.robot.Robot;
-import com.team3316.robot.commands.cargoIntake.CargoIntakeOpen;
 import com.team3316.robot.commands.elevator.ElevatorSetState;
 import com.team3316.robot.subsystems.CargoEjector.EjectorArmState;
 import com.team3316.robot.subsystems.Elevator.ElevatorState;

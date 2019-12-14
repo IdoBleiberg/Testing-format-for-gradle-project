@@ -3,8 +3,6 @@ package com.team3316.robot.commands.cargoIntake;
 
 import com.team3316.kit.DBugLogger;
 import com.team3316.kit.commands.DBugCommand;
-import com.team3316.kit.config.Config;
-import com.team3316.kit.config.ConfigException;
 import com.team3316.robot.Robot;
 import com.team3316.robot.subsystems.CargoIntake.IntakeRollersState;
 
@@ -14,9 +12,9 @@ import com.team3316.robot.subsystems.CargoIntake.IntakeRollersState;
 public class IntakeCollectCargo extends DBugCommand {
   private double _precentage;
 
-  public IntakeCollectCargo() throws ConfigException {
+  public IntakeCollectCargo() {
     requires(Robot.cargoIntake);
-    this._precentage = (double) Config.getInstance().get("cargoIntake.hold.voltage");
+    this._precentage = 1;
   }
 
   @Override
