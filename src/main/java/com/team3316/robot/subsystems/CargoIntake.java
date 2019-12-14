@@ -12,7 +12,6 @@ import com.team3316.robot.utils.Utils;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * CargoIntake

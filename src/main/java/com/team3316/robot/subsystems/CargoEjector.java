@@ -3,6 +3,7 @@ package com.team3316.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.team3316.kit.DBugSubsystem;
+import com.team3316.kit.motors.DBugSparkMax;
 import com.team3316.kit.motors.DBugTalon;
 import com.team3316.robot.Robot;
 import com.team3316.robot.subsystems.CargoIntake.IntakeArmState;
