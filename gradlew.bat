@@ -16,18 +16,6 @@ set APP_HOME=%DIRNAME%
 @rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
 set DEFAULT_JVM_OPTS="-Xmx64m"
 
-@echo off 
-SET var=%1
-IF "%1"=="test" (
-  echo /TestApplicationContext.xml> src/test/resources/RobotType.txt
-) ELSE (
-  IF "%1"=="build" (
-    echo /TestApplicationContext.xml> src/test/resources/RobotType.txt
-  ) ELSE (
-    echo /DeployApllicationContext.xml> src/test/resources/RobotType.txt
-  )
-)
-
 @rem Find java.exe
 if defined JAVA_HOME goto findJavaFromJavaHome
 

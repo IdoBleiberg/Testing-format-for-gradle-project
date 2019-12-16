@@ -1,10 +1,17 @@
 package com.team3316.robot.utils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+
+import com.team3316.kit.DBugLogger;
+import com.team3316.robot.Robot;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 public class Utils {
 
@@ -15,15 +22,10 @@ public class Utils {
   }
 
   public static Object getBean(String beanName) {
-    String everything = "/DeployApllicationContext.xml";
-    try {
-      BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/RobotType.txt"));
-      everything = reader.readLine();
-    } catch (Exception e) {
-      System.out.println("Couldn't get robot type because of " + e);
-    }
-    if(_context == null) {
-      _context = new ClassPathXmlApplicationContext(everything);
+    if (_context == null) {
+      if (Robot.isReal()) {
+        _context = new FileSystemXmlApplicationContext("/home/lvuser/deploy/DeployApllicationContext.xml");
+      } else _context = new ClassPathXmlApplicationContext("/TestApplicationContext.xml");
     }
     return _context.getBean(beanName);
   }
@@ -39,7 +41,7 @@ public class Utils {
    * if the requiredIndex is lower than the min x value or higher than the max x value,
    * returns the minimum or maximum value accordingly
    */
-  public static double valueInterpolation (double requiredIndex, double table[][]) {
+  public static double valueInterpolation(double requiredIndex, double table[][]) {
     if (requiredIndex < table[0][0]) {
       return table[1][0];
     }

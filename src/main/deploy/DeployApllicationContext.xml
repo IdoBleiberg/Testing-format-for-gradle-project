@@ -29,11 +29,11 @@
 
   <bean id="talon1" class="com.team3316.kit.motors.DBugTalon">
     <constructor-arg index="0" value="1"/>
-    <constructor-arg index="1" value="CLOSED_LOOP_QUAD"/>
+    <constructor-arg index="1" value="REGULAR"/>
   </bean>
   <bean id="talon2" class="com.team3316.kit.motors.DBugTalon">
     <constructor-arg index="0" value="2"/>
-    <constructor-arg index="1" value="CLOSED_LOOP_QUAD"/>
+    <constructor-arg index="1" value="REGULAR"/>
   </bean>
   <bean id="victor1" class="com.ctre.phoenix.motorcontrol.can.VictorSPX">
     <constructor-arg index="0" value="3"/>
@@ -41,12 +41,6 @@
   <bean id="victor2" class="com.ctre.phoenix.motorcontrol.can.VictorSPX">
     <constructor-arg index="0" value="4"/>
   </bean>
-
-  <!-- Sesnors -->
-  <bean id="NavX" class="com.team3316.robot.utils.AHRSTesting">
-    <constructor-arg index="0" value="kMXP"/>
-  </bean>
-
   <!-- Cargo Ejector -->
 
   <!-- Motors -->
