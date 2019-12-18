@@ -14,19 +14,10 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 public enum RobotState {
   COLLECTCARGO, COLLECTHP, Intermediet;
 
-  private InstantCommand _startingCommand;
   private NeededCommands _runningCommands;
 
-  public synchronized InstantCommand getStartingCommand() {
-    return this._startingCommand;
-  }
-
-  public void setStartingCommand(InstantCommand cmd) {
-    this._startingCommand = cmd;
-  }
-
-  public ArrayList<Command> getNeededComamnds() {
-    return this._runningCommands.get();
+  public NeededCommands getNeededComamnds() {
+    return this._runningCommands;
   }
 
   public void setNeededCommands(NeededCommands cmd) {

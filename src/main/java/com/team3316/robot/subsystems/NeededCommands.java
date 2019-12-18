@@ -5,5 +5,5 @@ import java.util.ArrayList;
 import edu.wpi.first.wpilibj.command.Command;
 
 public interface NeededCommands {
-  ArrayList<Command> get();
+  ArrayList<Command> getAndSet();
 }
