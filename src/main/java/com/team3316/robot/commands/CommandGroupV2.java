@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 import com.team3316.kit.DBugLogger;
-import com.team3316.kit.config.ConfigException;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.IllegalUseOfCommandException;
@@ -63,7 +62,7 @@ public abstract class CommandGroupV2 extends Command{
      *
      */
     @SafeVarargs
-    public final synchronized void add(Supplier<Command>... args) throws ConfigException{
+    public final synchronized void add(Supplier<Command>... args) {
         List<Supplier<Command>> l = new LinkedList<>();
 
         for (int i = 0; i < args.length; i++) {

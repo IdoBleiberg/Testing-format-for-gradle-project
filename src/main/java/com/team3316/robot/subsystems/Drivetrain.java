@@ -30,7 +30,6 @@ public class Drivetrain extends Subsystem {
 
     this.talon1.setDistancePerRevolution(2 * Math.PI * 5.0 / 40, 10);
     this.talon2.setDistancePerRevolution(2 * Math.PI * 5.0 / 40, 10);
-
   }
 
   @Override
@@ -41,6 +40,10 @@ public class Drivetrain extends Subsystem {
   public void setMotors(double talon1, double talon2) {
     this.talon1.set(ControlMode.PercentOutput, talon1);
     this.talon2.set(ControlMode.PercentOutput, talon2);
+  }
+
+  public double getYaw() {
+    return this._NavX.getYaw();
   }
 
   public double getTalon1() {

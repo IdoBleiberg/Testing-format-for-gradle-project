@@ -4,17 +4,11 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.team3316.kit.DBugSubsystem;
-import com.team3316.kit.config.Config;
-import com.team3316.kit.config.ConfigException;
-import com.team3316.kit.motors.DBugTalon;
 import com.team3316.robot.Robot;
-import com.team3316.robot.subsystems.Elevator.ElevatorState;
 import com.team3316.robot.utils.InvalidStateException;
 import com.team3316.robot.utils.Utils;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.command.InstantCommand;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * A subsystem for the Hatch Panel collection mechanism
@@ -166,8 +160,5 @@ public class PanelMechanism extends DBugSubsystem {
   }
 
   @Override
-  public void displayMatchData() {
-    // TODO Auto-generated method stub
-
-  }
+  public void displayMatchData() { }
 }

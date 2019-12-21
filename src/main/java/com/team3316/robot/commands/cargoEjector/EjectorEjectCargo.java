@@ -2,8 +2,6 @@ package com.team3316.robot.commands.cargoEjector;
 
 import com.team3316.kit.DBugLogger;
 import com.team3316.kit.commands.DBugCommand;
-import com.team3316.kit.config.Config;
-import com.team3316.kit.config.ConfigException;
 import com.team3316.robot.Robot;
 import com.team3316.robot.subsystems.CargoEjector.EjectorRollerState;
 
@@ -13,9 +11,9 @@ import com.team3316.robot.subsystems.CargoEjector.EjectorRollerState;
 public class EjectorEjectCargo extends DBugCommand {
   private long _lastHadCargo, _delay;
 
-  public EjectorEjectCargo() throws ConfigException {
+  public EjectorEjectCargo() {
     requires(Robot.cargoEjector);
-    this._delay = (long) Config.getInstance().get("ejectCargo.delay");
+    this._delay = 20l;
   }
 
   @Override

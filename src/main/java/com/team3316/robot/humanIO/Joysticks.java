@@ -3,8 +3,6 @@
  */
 package com.team3316.robot.humanIO;
 
-import com.team3316.kit.config.ConfigException;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 

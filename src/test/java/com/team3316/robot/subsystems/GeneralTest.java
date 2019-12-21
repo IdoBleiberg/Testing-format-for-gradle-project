@@ -1,11 +1,8 @@
 package com.team3316.robot.subsystems;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.team3316.kit.motors.DBugSparkMax;
 import com.team3316.robot.Robot;
 import com.team3316.robot.subsystems.CargoEjector.EjectorArmState;
 import com.team3316.robot.subsystems.CargoIntake.IntakeArmState;

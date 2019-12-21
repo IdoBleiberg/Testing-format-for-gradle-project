@@ -1,12 +1,5 @@
 package com.team3316.robot.utils;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Files;
-
-import com.team3316.kit.DBugLogger;
 import com.team3316.robot.Robot;
 
 import org.springframework.context.ApplicationContext;

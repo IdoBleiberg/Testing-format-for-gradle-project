@@ -5,11 +5,9 @@ import com.team3316.robot.Robot;
 import com.team3316.robot.subsystems.Elevator.ElevatorState;
 
 public class SetEjectorArmVoltage extends DBugCommand {
-  private double _voltage = 0;
   
   public SetEjectorArmVoltage(double v) {
-    //requires(Robot.cargoEjector);
-    this._voltage = v;
+    
   }
 
 	@Override

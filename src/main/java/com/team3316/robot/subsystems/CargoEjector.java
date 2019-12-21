@@ -3,7 +3,6 @@ package com.team3316.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.team3316.kit.DBugSubsystem;
-import com.team3316.kit.motors.DBugSparkMax;
 import com.team3316.kit.motors.DBugTalon;
 import com.team3316.robot.Robot;
 import com.team3316.robot.subsystems.CargoIntake.IntakeArmState;
@@ -22,12 +21,9 @@ public class CargoEjector extends DBugSubsystem {
   private DigitalInput _switch;
   public DBugTalon _armTalon;
   private DigitalInput _collectHallEffect, _ejectHallEffect;
-  private int _armPIDLoopIndex, _armPIDTimeout;
   private double _kArmTolerance;
 
   public CargoEjector() {
-    this._armPIDTimeout = 3;
-    this._armPIDLoopIndex = 0;
     this._ejectorMotor = (VictorSP) Utils.getBean("VictorMotor");
 
     this._kArmTolerance = 2;
@@ -61,7 +57,7 @@ public class CargoEjector extends DBugSubsystem {
     EjectorRollerState.IN.setVoltage(1);
     EjectorRollerState.OUT.setVoltage(-1);
     EjectorRollerState.STOP.setVoltage(0.0);
-    // TODO: move to config
+
     this._armTalon.configVoltageCompSaturation(4);
     this._armTalon.enableVoltageCompensation(true);
 
@@ -186,20 +182,11 @@ public class CargoEjector extends DBugSubsystem {
   }
 
   @Override
-  public void displayTestData() {
-    // TODO Auto-generated method stub
-
-  }
+  public void displayTestData() { }
 
   @Override
-  public void displayMatchData() {
-    // TODO Auto-generated method stub
-
-  }
+  public void displayMatchData() { }
 
   @Override
-  public void displayCommands() {
-    // TODO Auto-generated method stub
-
-  }
+  public void displayCommands() { }
 }

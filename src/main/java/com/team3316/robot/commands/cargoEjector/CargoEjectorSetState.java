@@ -1,7 +1,5 @@
 package com.team3316.robot.commands.cargoEjector;
 
-//import java.lang.module.ModuleDescriptor.Requires;
-
 import com.team3316.kit.DBugLogger;
 import com.team3316.kit.commands.DBugCommand;
 import com.team3316.robot.Robot;
@@ -9,45 +7,44 @@ import com.team3316.robot.subsystems.CargoEjector.EjectorArmState;
 import com.team3316.robot.utils.InvalidStateException;
 
 /**
- * EjectorToIntallLVL3
+ * CargoEjectorSetState
  */
-public class EjectorToIntallLVL3 extends DBugCommand {
+public class CargoEjectorSetState extends DBugCommand{
 
   private boolean _shouldRun = true;
+  private EjectorArmState _wantedState;
 
-  public EjectorToIntallLVL3() {
+  public CargoEjectorSetState(EjectorArmState state) {
     requires(Robot.cargoEjector);
+    this._wantedState = state;
   }
 
   @Override
   protected void init() {
     try {
       this._shouldRun = true;
-      Robot.cargoEjector.setArmState(EjectorArmState.INSTALL_LVL3);
+      Robot.cargoIntake.setBrake(false);
+      Robot.cargoEjector.setArmState(this._wantedState);
     } catch (InvalidStateException e) {
       DBugLogger.getInstance().severe(e);
       this._shouldRun = false;
-	}
+    }
+
   }
 
   @Override
-  protected void execute() {
-
-  }
+  protected void execute() { }
 
   @Override
   protected boolean isFinished() {
-    return Robot.cargoEjector.getArmState() == EjectorArmState.INSTALL_LVL3 || !this._shouldRun;
+    return Robot.cargoEjector.getArmState() == this._wantedState || !this._shouldRun;
   }
 
   @Override
-  protected void fin() {
-
-  }
+  protected void fin() { }
 
   @Override
-  protected void interr() {
+  protected void interr() { }
 
-  }
   
 }

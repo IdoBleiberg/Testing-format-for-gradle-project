@@ -2,7 +2,6 @@ package com.team3316.robot.commands.cargoIntake;
 
 import com.team3316.kit.commands.DBugCommand;
 import com.team3316.robot.Robot;
-import com.team3316.robot.subsystems.CargoIntake.IntakeArmState;
 
 /**
  * CargoIntakeDefault

@@ -9,19 +9,14 @@ import java.util.Optional;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.team3316.kit.DBugLogger;
 import com.team3316.kit.DBugSubsystem;
-import com.team3316.kit.config.Config;
-import com.team3316.kit.config.ConfigException;
 import com.team3316.kit.motors.DBugTalon;
-import com.team3316.kit.motors.TalonType;
 import com.team3316.robot.Robot;
 import com.team3316.robot.subsystems.CargoEjector.EjectorArmState;
 import com.team3316.robot.utils.InvalidStateException;
 import com.team3316.robot.utils.Utils;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Elevator subsystem
@@ -38,7 +33,7 @@ public class Elevator extends DBugSubsystem {
   /*
    * Tolerances
    */
-  private double _motorRunningTolerance, _motorCLETolerance;
+  private double _motorCLETolerance;
 
   /*
    * Talon profile slots
@@ -407,13 +402,9 @@ public class Elevator extends DBugSubsystem {
     this.setPercentage(0.0);
   }
 
-  public void displayTestData() {
-  }
+  public void displayTestData() { }
 
-  public void displayMatchData() {
-    // TODO - Implement
-  }
+  public void displayMatchData() { }
 
-  public void displayCommands() {
-  }
+  public void displayCommands() { }
 }

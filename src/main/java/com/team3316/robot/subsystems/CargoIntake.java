@@ -18,7 +18,6 @@ import edu.wpi.first.wpilibj.VictorSP;
  */
 public class CargoIntake extends DBugSubsystem {
   private boolean _isCargoSecured;
-  private int _kPIDLoopIdx, _kTimeoutMs;
   private double _armPosTolerance;
 
   /**
@@ -39,7 +38,7 @@ public class CargoIntake extends DBugSubsystem {
     this._armHallDown = (DigitalInput) Utils.getBean("Switch");
     this._armHallUp = (DigitalInput) Utils.getBean("Switch");
     this._armMasterMotor = (DBugTalon) Utils.getBean("collectorArmMotor");
-    // TODO - Remove when elec removes Victor from robot
+    
     this._armSlaveMotor = (VictorSPX) Utils.getBean("collectorSlaveArmMotor");
     this._armSlaveMotor.follow(this._armMasterMotor);
 
@@ -49,8 +48,6 @@ public class CargoIntake extends DBugSubsystem {
     this._armPosTolerance = 1;
 
     // Config _armMasterMotor Closed Control Position loop
-    this._kPIDLoopIdx = 0;
-    this._kTimeoutMs = 0;
     this._armMasterMotor.setDistancePerRevolution(2 * Math.PI * 5.0 / 40, 10);
     this._armMasterMotor.setSensorPhase(true);
     this._armMasterMotor.setInverted(true);
@@ -252,20 +249,11 @@ public class CargoIntake extends DBugSubsystem {
   }
 
   @Override
-  public void displayTestData() {
-    // TODO Auto-generated method stub
-
-  }
+  public void displayTestData() { }
 
   @Override
-  public void displayMatchData() {
-    // TODO Auto-generated method stub
-
-  }
+  public void displayMatchData() { }
 
   @Override
-  public void displayCommands() {
-    // TODO Auto-generated method stub
-
-  }
+  public void displayCommands() { }
 }
