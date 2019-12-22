@@ -34,5 +34,4 @@ public enum RobotState {
   public ElevatorState getWantedElevatorState() {
     return this._wantedElevatorState;
   }
-
 }
