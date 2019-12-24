@@ -102,7 +102,7 @@ class Handler extends CommandGroupV2 {
     IntakeArmState _currentIntakeState = Robot.cargoIntake.getArmState();
     ElevatorState _currentElevatorState = Robot.elevator.getState();
     if (_currentElevatorState != _wantedElevatorState) {
-      if (_currentEjectorState == EjectorArmState.EJECT) {
+      if (_currentEjectorState == _wantedEjectorState) {
         if (_currentIntakeState != _wantedIntakeState) {
           needed.add(new ElevatorSetState(_wantedElevatorState));
           needed.add(new CargoIntakeSetState(_wantedIntakeState));
@@ -111,13 +111,15 @@ class Handler extends CommandGroupV2 {
         }
       } 
       else {
-        needed.add(new CargoEjectorSetState(EjectorArmState.EJECT));
+        if (_wantedEjectorState == EjectorArmState.EJECT || (_currentEjectorState == EjectorArmState.INSTALL_LVL3 && _wantedEjectorState != EjectorArmState.INSTALL_LVL3) 
+        || (_currentEjectorState == EjectorArmState.COLLECT && _wantedElevatorState.isAboveBottom())) needed.add(new CargoEjectorSetState(EjectorArmState.EJECT));
         if (_currentIntakeState != _wantedIntakeState) {
           needed.add(new ElevatorSetState(_wantedElevatorState));
           needed.add(new CargoIntakeSetState(_wantedIntakeState));
         } else {
           needed.add(new ElevatorSetState(_wantedElevatorState));
         }
+        if (_wantedEjectorState != EjectorArmState.EJECT) needed.add(new CargoEjectorSetState(_wantedEjectorState));
       }
     } else {
       if (_wantedIntakeState != _currentIntakeState) {
@@ -126,13 +128,16 @@ class Handler extends CommandGroupV2 {
           if (_wantedEjectorState != _currentEjectorState) needed.add(new CargoEjectorSetState(_wantedEjectorState));
         }
         else {
-          if (_currentEjectorState != EjectorArmState.EJECT) {
+          if (_currentEjectorState != EjectorArmState.EJECT && !_currentElevatorState.isAboveBottom()) {
             needed.add(new CargoEjectorSetState(EjectorArmState.EJECT));
             needed.add(new CargoIntakeSetState(IntakeArmState.IN));
           } else {
             needed.add(new CargoIntakeSetState(IntakeArmState.IN));
           }
+          if (_wantedEjectorState != _currentEjectorState && _wantedEjectorState != EjectorArmState.EJECT) needed.add(new CargoEjectorSetState(_wantedEjectorState));
         }
+      } else {
+        if (_wantedEjectorState != _currentEjectorState) needed.add(new CargoEjectorSetState(_wantedEjectorState));
       }
     }
     return needed;

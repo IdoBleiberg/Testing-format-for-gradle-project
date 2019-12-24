@@ -11,7 +11,7 @@ import com.team3316.robot.subsystems.Elevator.ElevatorState;
 *   has a function get() which needs to return the needed command/commandGroups in order to change the robotState to the wanted one. 
 */
 public enum RobotState {
-  PRE_COLLECTCARGO, AFTER_COLLECTCARGO, Intermediet;
+  PRE_COLLECTCARGO, AFTER_COLLECTCARGO, CARGO_INSTALL_LVL3 ,Intermediet;
 
   private EjectorArmState _wantedEjectorState;
   private IntakeArmState _wantedIntakeState;

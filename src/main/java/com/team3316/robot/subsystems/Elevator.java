@@ -56,8 +56,8 @@ public class Elevator extends DBugSubsystem {
     STARTING_CONF(7), // Starting Configuration
     PRE_LVL2_HP(8), LVL2_HP(9), // Level 2 HP install
     LVL2_CARGO(10), // Level 2 Cargo install
-    PRE_LVL3_HP(11), LVL3_HP(12), // Level 3 HP install
-    LVL3_CARGO(13), // Level 3 Cargo install
+    LVL3_CARGO(11), // Level 3 Cargo install
+    PRE_LVL3_HP(12), LVL3_HP(13), // Level 3 HP install
     TOP_BP(14), // Elevator is at the top breakpoint
     TOP(15), // Elevator is topped
     INTERMEDIATE(16); // Intermediate state

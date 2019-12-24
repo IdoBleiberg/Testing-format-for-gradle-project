@@ -152,6 +152,9 @@ public class CargoEjector extends DBugSubsystem {
     else if (this.getArmPos() <= EjectorArmState.COLLECT.getAngle() + this._kArmTolerance) {
       return EjectorArmState.COLLECT;
     }
+    else if (this.getArmPos() <= EjectorArmState.INSTALL_LVL3.getAngle() + this._kArmTolerance && this.getArmPos() >= EjectorArmState.INSTALL_LVL3.getAngle() - this._kArmTolerance) {
+      return EjectorArmState.INSTALL_LVL3;
+    }
     return EjectorArmState.INTERMEDIATE;
   }
 
