@@ -61,7 +61,7 @@ dependencies {
     nativeZip wpi.deps.vendor.jni(wpi.platforms.roborio)
     nativeDesktopZip wpi.deps.vendor.jni(wpi.platforms.desktop)
 
-    compile 'com.github.team3316:dbug-kit:1.3-testing'
+    compile 'com.github.team3316:dbug-kit:1.6-testing'
     compile 'org.springframework.boot:spring-boot-starter'
     testCompile('org.junit.jupiter:junit-jupiter-api:5.2.0')
     testCompile('org.junit.jupiter:junit-jupiter-params:5.2.0')

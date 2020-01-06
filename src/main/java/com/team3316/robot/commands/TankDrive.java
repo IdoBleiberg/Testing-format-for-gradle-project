@@ -16,12 +16,12 @@ public class TankDrive extends Command {
   }
 
   @Override
-  protected void execute() {
+  public void execute() {
     Robot.drivetrain.setMotors(Robot.joysticks.getLeftY(), Robot.joysticks.getRightY());
   }
 
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return false;
   }
 

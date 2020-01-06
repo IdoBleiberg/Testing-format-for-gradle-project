@@ -17,17 +17,17 @@ public class CargoIntakeSetRollers extends DBugCommand{
   }
 
    @Override
-  protected void init() {
+  public void init() {
     DBugLogger.getInstance().info("Setting intake rollers to " + this._state.toString());
   }
 
    @Override
-  protected void execute() {
+  public void execute() {
     Robot.cargoIntake.setRollersState(this._state);
   }
 
    @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     switch (this._state) {
       case IN:
         return Robot.cargoEjector.hasCargo();
@@ -37,12 +37,12 @@ public class CargoIntakeSetRollers extends DBugCommand{
   }
 
    @Override
-  protected void fin() {
+  public void fin() {
     Robot.cargoIntake.setRollersState(IntakeRollersState.STOPPED);
   }
 
    @Override
-  protected void interr() {
+  public void interr() {
     this.fin();
   }
 

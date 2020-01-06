@@ -13,27 +13,27 @@ public class DriverCamera extends DBugCommand{
   }
 
   @Override
-  protected void init() {
+  public void init() {
     CameraServer.getInstance().startAutomaticCapture("camera",0);
   }
 
   @Override
-  protected void execute() {
+  public void execute() {
 
   }
 
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return true;
   }
 
   @Override
-  protected void fin() {
+  public void fin() {
 
   }
 
   @Override
-  protected void interr() {
+  public void interr() {
 
   }
 

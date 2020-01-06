@@ -18,30 +18,30 @@ public class IntakeCollectCargo extends DBugCommand {
   }
 
   @Override
-  protected void init() {
+  public void init() {
     DBugLogger.getInstance().info("Intake started Collecting cargo");
   }
 
   @Override
-  protected void execute() {
+  public void execute() {
     Robot.cargoIntake.setRollersState(IntakeRollersState.IN);
     Robot.cargoIntake.setPrecntage(this._precentage);
   }
 
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return Robot.cargoEjector.hasCargo();
 
   }
 
   @Override
-  protected void fin() {
+  public void fin() {
     Robot.cargoIntake.setRollersState(IntakeRollersState.STOPPED);
     Robot.cargoIntake.setPrecntage(0.0);
   }
 
   @Override
-  protected void interr() {
+  public void interr() {
     this.fin();
   }
 }

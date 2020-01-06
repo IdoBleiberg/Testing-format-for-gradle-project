@@ -14,27 +14,27 @@ public class EjectorCollectCargo extends DBugCommand {
   }
 
   @Override
-  protected void init() {
+  public void init() {
     DBugLogger.getInstance().info("Ejector started collecting cargo");
   }
 
   @Override
-  protected void execute() {
+  public void execute() {
     Robot.cargoEjector.setRollerState(EjectorRollerState.IN);
   }
 
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return Robot.cargoEjector.hasCargo();
   }
 
   @Override
-  protected void fin() {
+  public void fin() {
     Robot.cargoEjector.setRollerState(EjectorRollerState.STOP);
   }
 
   @Override
-  protected void interr() {
+  public void interr() {
     this.fin();
   }
 }

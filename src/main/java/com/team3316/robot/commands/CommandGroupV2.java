@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 import com.team3316.kit.DBugLogger;
+import com.team3316.kit.commands.DBugCommand;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.IllegalUseOfCommandException;
@@ -57,6 +58,28 @@ public abstract class CommandGroupV2 extends Command{
         isFinished = true;
     }
 
+    public void testSequence() {
+        for (List<Supplier<Command>> list : queue) {
+            for (Supplier<Command> sup : list) {
+                DBugCommand cmd = (DBugCommand) sup.get();
+                cmd.init();
+            }
+        }   
+    }
+
+    public void testSequence(int start, int end) {
+        for (int i = start; i < end; i++) {
+            List<Supplier<Command>> list = queue.get(i);
+            for (Supplier<Command> sup : list) {
+                DBugCommand cmd = (DBugCommand) sup.get();
+                cmd.init();
+            }
+        }
+        for (List<Supplier<Command>> list : queue) {
+
+        }   
+    }
+
     /**
      * @param args - appends a sequence of commands to run. Given as suppliers, each returning a new command instance. These will run simultaneously.
      *
@@ -77,7 +100,7 @@ public abstract class CommandGroupV2 extends Command{
     }
 
     @Override
-    protected boolean isFinished() {
+    public boolean isFinished() {
       return isFinished;
     }
 

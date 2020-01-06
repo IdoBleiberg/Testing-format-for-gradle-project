@@ -19,7 +19,7 @@ public class ElevatorSetState extends DBugCommand {
   }
 
   @Override
-  protected void init() {
+  public void init() {
     try {
       this._shouldRun = true;
       Robot.elevator.setState(this._wantedState);
@@ -31,23 +31,23 @@ public class ElevatorSetState extends DBugCommand {
   }
 
   @Override
-  protected void execute() {
+  public void execute() {
     // Nothin'
   }
 
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     DBugLogger.getInstance().info(String.valueOf(this._wantedState.getHeight()) + " next to " + String.valueOf(Robot.elevator.getState().getHeight()));
     return this._wantedState.getHeight() == Robot.elevator.getState().getHeight() || !this._shouldRun;
   }
 
   @Override
-  protected void fin() {
+  public void fin() {
     // Nothin'
   }
 
   @Override
-  protected void interr() {
+  public void interr() {
     this.fin();
   }
 }

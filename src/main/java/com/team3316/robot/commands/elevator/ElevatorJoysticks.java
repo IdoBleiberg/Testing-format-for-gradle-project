@@ -9,27 +9,27 @@ import com.team3316.kit.commands.DBugCommand;
 public class ElevatorJoysticks extends DBugCommand{
 
   @Override
-  protected void init() {
+  public void init() {
     DBugLogger.getInstance().info("Started moving elevator with joysticks");
   }
 
   @Override
-  protected void execute() {
+  public void execute() {
     //Robot.elevator.setPercentage(Robot.joysticks.getXboxRightY());
   }
 
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return false;
   }
 
   @Override
-  protected void fin() {
+  public void fin() {
 
   }
 
   @Override
-  protected void interr() {
+  public void interr() {
 
   }
 

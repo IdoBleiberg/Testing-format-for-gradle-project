@@ -13,12 +13,12 @@ public class CargoIntakeDefault extends DBugCommand {
   }
 
   @Override
-  protected void init() {
+  public void init() {
 
   }
 
   @Override
-  protected void execute() {
+  public void execute() {
     /*
     if (Robot.cargoIntake.getWantedArmState() != IntakeArmState.INTERMEDIATE ) {
       if (Robot.cargoIntake.getWantedArmState() == IntakeArmState.IN) {
@@ -35,17 +35,17 @@ public class CargoIntakeDefault extends DBugCommand {
   }
 
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return false;
   }
 
   @Override
-  protected void fin() {
+  public void fin() {
 
   }
 
   @Override
-  protected void interr() {
+  public void interr() {
 
   }
   

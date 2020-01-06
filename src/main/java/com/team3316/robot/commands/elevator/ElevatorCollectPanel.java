@@ -21,30 +21,30 @@ public class ElevatorCollectPanel extends DBugCommand {
   }  
 
   @Override
-  protected void init() {
+  public void init() {
     if (addedPos == 0) Robot.elevator.collectPanel();
     else Robot.elevator.collectPanel(addedPos);
     this._initTime = System.currentTimeMillis();
   }
 
   @Override
-  protected void execute() {
+  public void execute() {
 
   }
 
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     long currentTime = System.currentTimeMillis();
     return currentTime - this._initTime >= 150l;
   }
 
   @Override
-  protected void fin() {
+  public void fin() {
 
   }
 
   @Override
-  protected void interr() {
+  public void interr() {
 
   }
 

@@ -23,7 +23,7 @@ public class MoveToState extends Command {
   }
 
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return Robot.cargoEjector.getArmState() == this._state.getWantedEjectorState() && Robot.cargoIntake.getArmState() == this._state.getWantedIntakeState() 
       && Robot.elevator.getState() == this._state.getWantedElevatorState();
   }

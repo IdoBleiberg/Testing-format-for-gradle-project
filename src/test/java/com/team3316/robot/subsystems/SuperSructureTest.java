@@ -9,6 +9,7 @@ import com.team3316.robot.Robot;
 import com.team3316.robot.commands.cargoEjector.CargoEjectorSetState;
 import com.team3316.robot.commands.cargoIntake.CargoIntakeSetState;
 import com.team3316.robot.commands.elevator.ElevatorSetState;
+import com.team3316.robot.commands.examples.CollectCargo2;
 import com.team3316.robot.subsystems.CargoEjector.EjectorArmState;
 import com.team3316.robot.subsystems.CargoIntake.IntakeArmState;
 import com.team3316.robot.subsystems.Elevator.ElevatorState;
@@ -29,7 +30,7 @@ public class SuperSructureTest {
     RobotState.PRE_COLLECTCARGO.setStates(EjectorArmState.COLLECT, IntakeArmState.OUT, ElevatorState.BOTTOM);
     RobotState.AFTER_COLLECTCARGO.setStates(EjectorArmState.EJECT, IntakeArmState.IN, ElevatorState.BOTTOM);
   }
-
+  /*
   @Test
   public void preCollectCargo() {
     ArrayList<Command> expected = new ArrayList<Command>();
@@ -154,6 +155,21 @@ public class SuperSructureTest {
     actual = Robot.superSructure.getNeededCommands();
 
     assertEquals(expected.toString(), actual.toString());
+  }
+  */
+
+  @Test
+  public void sequenceTest() {
+    try {
+      Robot.elevator.setState(ElevatorState.BOTTOM);
+      Robot.cargoEjector.setArmState(EjectorArmState.EJECT);
+      Robot.cargoIntake.setArmState(IntakeArmState.IN);
+    } catch (Exception e) {
+      System.out.println(e);
+      assertEquals(false, true);
+    }
+    new CollectCargo2().testSequence();
+    assertEquals(true, Robot.elevator.getState() == ElevatorState.BOTTOM && Robot.cargoEjector.getArmState() == EjectorArmState.COLLECT && Robot.cargoIntake.getArmState() == IntakeArmState.OUT);
   }
 
 } 

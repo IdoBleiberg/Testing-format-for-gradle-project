@@ -16,7 +16,7 @@ public class InstallPanel extends DBugCommandGroup {
   }
 
   @Override
-  protected void init() {
+  public void init() {
     DBugLogger.getInstance().info("Installing Panel");
   }
 

@@ -15,28 +15,28 @@ public class MoveElevatorToInstallPanel extends DBugCommand {
   }
 
   @Override
-  protected void init() {
+  public void init() {
     this._startPos = Robot.elevator.getPosition();
     Robot.elevator.installPanel();
   }
 
   @Override
-  protected void execute() {
+  public void execute() {
 
   }
 
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return this._startPos - Robot.elevator.getPosition() >= 4.5;
   }
 
   @Override
-  protected void fin() {
+  public void fin() {
 
   }
 
   @Override
-  protected void interr() {
+  public void interr() {
 
   }
   

@@ -17,7 +17,7 @@ public class TankDrive extends DBugCommand {
   }
 
   @Override
-  protected void init() {
+  public void init() {
     DBugLogger.getInstance().info("Started driving with joysticks");
   }
 
@@ -25,7 +25,7 @@ public class TankDrive extends DBugCommand {
    * Sets motors value to Joysticks' Y axis
    */
   @Override
-  protected void execute() {
+  public void execute() {
     double leftY = -Robot.joysticks.getRightY();
     double rightY = -Robot.joysticks.getLeftY();
     SmartDashboard.putNumber("left joystick", rightY);
@@ -34,17 +34,17 @@ public class TankDrive extends DBugCommand {
   }
 
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return false;
   }
 
   @Override
-  protected void fin() {
+  public void fin() {
     Robot.drivetrain.setMotors(0, 0);
   }
 
   @Override
-  protected void interr() {
+  public void interr() {
     this.fin();
   }
 }

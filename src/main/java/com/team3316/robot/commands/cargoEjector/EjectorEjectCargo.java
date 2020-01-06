@@ -17,30 +17,30 @@ public class EjectorEjectCargo extends DBugCommand {
   }
 
   @Override
-  protected void init() {
+  public void init() {
     this._lastHadCargo = System.currentTimeMillis();
     DBugLogger.getInstance().info("Strated ejcting cargo");
   }
 
   @Override
-  protected void execute() {
+  public void execute() {
     Robot.cargoEjector.setRollerState(EjectorRollerState.OUT);
   }
 
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     if (Robot.cargoEjector.hasCargo()) this._lastHadCargo = System.currentTimeMillis();
     long timeDelta = System.currentTimeMillis() - this._lastHadCargo;
     return timeDelta > this._delay;
   }
 
   @Override
-  protected void fin() {
+  public void fin() {
     Robot.cargoEjector.setRollerState(EjectorRollerState.STOP);
   }
 
   @Override
-  protected void interr() {
+  public void interr() {
     this.fin();
   }
 

@@ -18,29 +18,29 @@ public class setVoltageForTime extends DBugCommand {
   }
 
   @Override
-  protected void init() {
+  public void init() {
     this._initTime = System.currentTimeMillis();
     Robot.panelMechanism.setBrakes(true);
   }
 
   @Override
-  protected void execute() {
+  public void execute() {
     Robot.panelMechanism.setVoltageUnsafe(this._voltage);
   }
 
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return System.currentTimeMillis() - this._initTime >= this._time;
   }
 
   @Override
-  protected void fin() {
+  public void fin() {
     Robot.panelMechanism.stopMovment();
     Robot.panelMechanism.setBrakes(true);
   }
 
   @Override
-  protected void interr() {
+  public void interr() {
 
   }
 

@@ -20,7 +20,7 @@ public class CargoIntakeSetState extends DBugCommand{
   }
 
   @Override
-  protected void init() {
+  public void init() {
     try {
       this._shouldRun = true;
       Robot.cargoIntake.setBrake(false);
@@ -33,21 +33,21 @@ public class CargoIntakeSetState extends DBugCommand{
   }
 
   @Override
-  protected void execute() { }
+  public void execute() { }
 
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return Robot.cargoIntake.getArmState() == this._wantedState || !this._shouldRun;
   }
 
   @Override
-  protected void fin() {
+  public void fin() {
     Robot.cargoIntake.setBrake(true);
 
   }
 
   @Override
-  protected void interr() {
+  public void interr() {
     this.fin();
   }
 

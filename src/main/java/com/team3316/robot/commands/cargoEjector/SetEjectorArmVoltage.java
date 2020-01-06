@@ -11,27 +11,27 @@ public class SetEjectorArmVoltage extends DBugCommand {
   }
 
 	@Override
-	protected void init() {
+	public void init() {
 		
 	}
 
 	@Override
-	protected void execute() {
+	public void execute() {
 		//Robot.cargoEjector.setArmVoltage(this._voltage);
 	}
 
 	@Override
-	protected boolean isFinished() {
+	public boolean isFinished() {
 		return Robot.elevator.getPosition() < ElevatorState.LVL2_CARGO.getHeight() - 30;
 	}
 
 	@Override
-	protected void fin() {
+	public void fin() {
 		
 	}
 
 	@Override
-	protected void interr() {
+	public void interr() {
 		
 	}
 

@@ -9,7 +9,7 @@ import com.team3316.robot.utils.InvalidStateException;
 /**
  * CargoEjectorSetState
  */
-public class CargoEjectorSetState extends DBugCommand{
+public class CargoEjectorSetState extends DBugCommand {
 
   private boolean _shouldRun = true;
   private EjectorArmState _wantedState;
@@ -20,7 +20,7 @@ public class CargoEjectorSetState extends DBugCommand{
   }
 
   @Override
-  protected void init() {
+  public void init() {
     try {
       this._shouldRun = true;
       Robot.cargoIntake.setBrake(false);
@@ -33,18 +33,18 @@ public class CargoEjectorSetState extends DBugCommand{
   }
 
   @Override
-  protected void execute() { }
+  public void execute() { }
 
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return Robot.cargoEjector.getArmState() == this._wantedState || !this._shouldRun;
   }
 
   @Override
-  protected void fin() { }
+  public void fin() { }
 
   @Override
-  protected void interr() { }
+  public void interr() { }
 
   
 }

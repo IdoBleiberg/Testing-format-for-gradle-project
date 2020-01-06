@@ -19,7 +19,7 @@ public class DBugToggleOneCommand extends DBugCommand{
   }
 
   @Override
-  protected void init() {
+  public void init() {
     if (DBugToggleOneCommand._toogle) {
       this._cmd1.cancel();
       DBugToggleOneCommand._toogle = false;
@@ -30,20 +30,20 @@ public class DBugToggleOneCommand extends DBugCommand{
   }
 
   @Override
-  protected void execute() {}
+  public void execute() {}
 
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return true;
   }
 
   @Override
-  protected void fin() {
+  public void fin() {
 
   }
 
   @Override
-  protected void interr() {
+  public void interr() {
 
   }
 

@@ -19,7 +19,7 @@ public class SetPanelState extends DBugCommand {
   }
 
   @Override
-  protected void init() {
+  public void init() {
     DBugLogger.getInstance()
         .info("Moving PanelMechanism " + Robot.panelMechanism.getState().toString() + " -> " + _wantedState.toString());
     Robot.panelMechanism.stopMovment();
@@ -27,7 +27,7 @@ public class SetPanelState extends DBugCommand {
   }
 
   @Override
-  protected void execute() {
+  public void execute() {
     try {
       this._shouldRun = true;
       Robot.panelMechanism.setArmState(this._wantedState);
@@ -41,18 +41,18 @@ public class SetPanelState extends DBugCommand {
   }
 
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return Robot.panelMechanism.getState() == this._wantedState || !this._shouldRun;
   }
 
   @Override
-  protected void fin() {
+  public void fin() {
     Robot.panelMechanism.stopMovment();
     //new setVoltageForTime(500l, 0.2 * Math.signum(this._wantedState.getVoltage()) * 0.2).start();
   }
 
   @Override
-  protected void interr() {
+  public void interr() {
     this.fin();
   }
 
