@@ -5,16 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 
+import com.team3316.kit.config.ConfigException;
 import com.team3316.robot.Robot;
+import com.team3316.robot.commands.CommandGroupV2;
 import com.team3316.robot.commands.cargoEjector.EjectorCollectCargo;
 import com.team3316.robot.commands.cargoEjector.EjectorToCollect;
 import com.team3316.robot.commands.cargoEjector.EjectorToEject;
 import com.team3316.robot.commands.cargoIntake.CargoIntakeClose;
 import com.team3316.robot.commands.cargoIntake.IntakeCollectCargo;
-import com.team3316.robot.commands.cargoIntake.commandGroups.CollectCargo;
-import com.team3316.robot.subsystems.CargoEjector;
-import com.team3316.robot.subsystems.CargoIntake;
-import com.team3316.robot.subsystems.Elevator;
 import com.team3316.robot.subsystems.CargoEjector.EjectorArmState;
 import com.team3316.robot.subsystems.CargoIntake.IntakeArmState;
 import com.team3316.robot.subsystems.Elevator.ElevatorState;
@@ -24,7 +22,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.core.annotation.Order;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.InstantCommand;
 
 public class SuperSructureTest {
 
@@ -35,20 +32,29 @@ public class SuperSructureTest {
     Robot.elevator = new Elevator();
     Robot.superSructure = new SuperSructure();
 
-    RobotState.COLLECTCARGO.setStartingCommand(new InstantCommand(() -> {
-      new CollectCargo().start();
-    }));
-
     RobotState.COLLECTCARGO.setNeededCommands(() -> {
-      ArrayList<Command> needed = new ArrayList<Command>();
-      if (Robot.cargoEjector.getArmState() != EjectorArmState.COLLECT) needed.add(new EjectorToCollect());
-      if (!Robot.cargoEjector.hasCargo()) {
-        needed.add(new IntakeCollectCargo());
-        needed.add(new EjectorCollectCargo());
+      class Anonymus extends CommandGroupV2 {
+        public ArrayList<Command> setAndGet() {
+          ArrayList<Command> needed = new ArrayList<Command>();
+          try {
+            if (Robot.cargoEjector.getArmState() != EjectorArmState.COLLECT) {
+              needed.add(new EjectorToCollect());
+              this.add(() -> new EjectorToCollect());
+            }
+            if (!Robot.cargoEjector.hasCargo()) {
+              needed.add(new IntakeCollectCargo());
+              needed.add(new EjectorCollectCargo());
+              this.add(() -> new IntakeCollectCargo(), () -> new EjectorCollectCargo());
+            }
+            needed.add(new EjectorToEject(true));
+            this.add(() -> new EjectorToEject(true));
+            needed.add(new CargoIntakeClose());
+            this.add(() -> new CargoIntakeClose());
+          } catch (Exception e) { System.out.println(e); }
+        return needed;
+        }
       }
-      needed.add(new EjectorToEject(true));
-      needed.add(new CargoIntakeClose());
-      return needed;
+      return new Anonymus().setAndGet();
     });
   }
 

@@ -13,7 +13,7 @@ public class SuperSructure extends DBugSubsystem {
   public SuperSructure() { }
 
   public synchronized void setRobotState(RobotState state) {
-    state.getStartingCommand().start();
+    state.getNeededComamnds().getAndSet();
     this._wantedRobotState = state;
   }
 
@@ -22,7 +22,7 @@ public class SuperSructure extends DBugSubsystem {
   }
 
   public synchronized ArrayList<Command> getNeededCommands() {
-    return this._wantedRobotState.getNeededComamnds();
+    return this._wantedRobotState.getNeededComamnds().getAndSet();
   }
 
   @Override
